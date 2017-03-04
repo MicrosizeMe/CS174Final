@@ -18,7 +18,7 @@ app.use(require('body-parser').json({ extended: true }));
 
 require('./echo.js')(app);
 
-app.use('/', express.static('adminPages'));
+app.use('/', express.static('static'));
 
 var tcpPortUsed = require('tcp-port-used');
 tcpPortUsed.check(process.env.PORT || 9000, "127.0.0.1").then(
