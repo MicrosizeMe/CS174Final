@@ -5,15 +5,15 @@ footstepSound.volume = .9;
 var musicOn = true;
 
 var windSound = new Audio("sounds/wind.mp3");
-windSound.loop=true;
+windSound.loop = true;
 
 var waveSound = new Audio("sounds/wave.mp3");
-waveSound.loop=true;
-waveSound.volume=.2;
+waveSound.loop = true;
+waveSound.volume = .2;
 
 var fireSound = new Audio("sounds/fire.wav");
-fireSound.loop=true;
-fireSound.volume=0.5;
+fireSound.loop = true;
+fireSound.volume = 0.5;
 
 function Player(glCanvas, pos, speed) {
 	this.camera = new Camera(glCanvas);
@@ -315,23 +315,23 @@ function Player(glCanvas, pos, speed) {
 	var identMat = mat4();
 }
 
-// function nextLeanAngle(curAngle)
-// {
-// 	if (!nextLeanAngle.isInitialized)
-// 		nextLeanAngle.isLeft = 1;
-// 	nextLeanAngle.isInitialized = true;
+/*function nextLeanAngle(curAngle)
+{
+	if (!nextLeanAngle.isInitialized)
+		nextLeanAngle.isLeft = 1;
+	nextLeanAngle.isInitialized = true;
 	
-// 	var newAngle = curAngle;
-// 	if (curAngle >= 7.0)
-// 		nextLeanAngle.isLeft = 0;
-// 	else if (curAngle <= -7.0)
-// 		nextLeanAngle.isLeft = 1;
-// 	if (nextLeanAngle.isLeft)
-// 		newAngle += 1.0;
-// 	else
-// 		newAngle -= 1.0;
-// 	return newAngle;
-// }
+	var newAngle = curAngle;
+	if (curAngle >= 7.0)
+		nextLeanAngle.isLeft = 0;
+	else if (curAngle <= -7.0)
+		nextLeanAngle.isLeft = 1;
+	if (nextLeanAngle.isLeft)
+		newAngle += 1.0;
+	else
+		newAngle -= 1.0;
+	return newAngle;
+}*/
 
 Player.prototype.draw = function(dt) {
 	// Using a 32x32x32 box seems to make the crosshairs appropriately small
@@ -362,12 +362,14 @@ Player.prototype.handleKeyDown = function(e) {
 		case 68: // D - right
 			this.rightVelocity = this.movementSpeed;
 			break;
-		// case 81: // Q - lean left
-		// 	this.leanLeft = true;
-		// 	break;
-		// case 69: // E - lean right
-		// 	this.leanRight = true;
+		/*
+		case 81: // Q - lean left
+			this.leanLeft = true;
 			break;
+		case 69: // E - lean right
+			this.leanRight = true;
+			break;
+		*/
 		case 16: // SHIFT - run
 			this.isRunning = true;
             footstepSound.playbackRate=2.0;
