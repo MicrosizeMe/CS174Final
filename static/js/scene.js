@@ -42,15 +42,15 @@ var resetCount = 0;
 
 var timer = new Timer();
 
-var cutscene=false;
+var cutscene = false;
 
 var music = new Audio("sounds/islandMusic2.mp3");
-music.loop=true;
-var isNighttime=false;
+music.loop = true;
+var isNighttime = false;
 
 // Steps in for moving camera
 var rotateDegree = 1;
-var moveUnit = 0.075 * 2;
+var moveUnit = 0.075;
 var mouseSensitivity = 0.1;
 
 // Helper to set shader attributes/uniforms
