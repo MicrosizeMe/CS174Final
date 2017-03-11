@@ -13,11 +13,11 @@ var Tree = (function() {
 	function constructor(position, radius, height, age)
 	{
 		if(!foliageTex) {
-			foliageTex = new Texture.fromImageSrc('./images/foliage.png');
+			foliageTex = new Texture.fromImageSrc('../img/foliage.png');
 		}
 
 		if(!barkBumpMap) {
-			barkBumpMap = new Texture.fromImageSrc('./images/waves.jpg',gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR);
+			barkBumpMap = new Texture.fromImageSrc('../img/waves.jpg',gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR);
 		}
 
 		var foliageMaterial = new Material(
@@ -30,9 +30,13 @@ var Tree = (function() {
 		this.height   = height;
 
 		this.trunk         = new HexagonalPrism(trunkMaterial, null, barkBumpMap);
+		this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
+		this.foliageRound.radius = 4;
+		/*
 		this.foliageTop    = new HexagonalPyramid(foliageMaterial, foliageTex, null);
 		this.foliageMiddle = new HexagonalPrism(foliageMaterial, foliageTex, null);
 		this.foliageBottom = new HexagonalPyramid(foliageMaterial, foliageTex, null);
+		*/
 
 		this.stick = null;
 
@@ -88,6 +92,8 @@ Tree.prototype.draw = function(dt, mat) {
 	this.trunk.position = pos;
 	this.trunk.scale = vec3(kX * 0.15, 2.0 * kY, kZ * 0.15);
 
+	/*
+
 	this.foliageTop.position = add(pos, vec3(0.0, 2.5 * kY, 0.0));
 	this.foliageTop.scale    = vec3(0.7 * kX, 1.5 * kY, 0.7 * kZ);
 
@@ -97,10 +103,17 @@ Tree.prototype.draw = function(dt, mat) {
 	this.foliageBottom.position = add(pos, vec3(0.0, 2.0 * kY, 0.0));
 	this.foliageBottom.scale    = vec3(0.7 * kX, -0.3 * kY, 0.7 * kZ);
 
+*/
+	this.foliageRound.position  = add(pos, vec3(0.0, 2.0 * kY, 0.0));
+	this.foliageRound.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
+
 	this.trunk.draw(dt, mat);
+	/*
 	this.foliageTop.draw(dt, mat);
 	this.foliageMiddle.draw(dt, mat);
 	this.foliageBottom.draw(dt, mat);
+	*/
+	this.foliageRound.draw(dt, mat);
 
 	if(this.stick) {
 		this.stick.draw(dt, mat);
