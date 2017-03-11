@@ -244,49 +244,49 @@ function Player(glCanvas, pos, speed) {
             fireSound.pause();
         }
         
-        //wind
-        if(this.position()[1]>=maxIslandHeight-2) {
-            music.volume=0.01;
-            windSound.volume=0.5;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-10) {
-            music.volume=0.05;
-            windSound.volume=0.2;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-15) {
-            music.volume=0.07;
-            windSound.volume=0.1;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-20) {
-            music.volume=0.09;
-            windSound.volume=0.05;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-25) {
-            music.volume=0.1;
-            windSound.volume=0.02;
-            windSound.play();
-        }
-        else {
-            music.volume=0.15;
-            windSound.pause();
-            windSound.currentTime=0;
-        }
-        //waves
-        if(this.position()[1]<1.5) {
-            waveSound.volume=.2;
-            waveSound.play();
-        }
-        else if(this.position()[1]<8.0) {
-            waveSound.volume=.1;
-            waveSound.play();
-        }
-        else {
-            waveSound.volume=.01;
-        }
+        // //wind
+        // if(this.position()[1]>=maxIslandHeight-2) {
+        //     music.volume=0.01;
+        //     windSound.volume=0.5;
+        //     windSound.play();
+        // }
+        // else if (this.position()[1]>=maxIslandHeight-10) {
+        //     music.volume=0.05;
+        //     windSound.volume=0.2;
+        //     windSound.play();
+        // }
+        // else if (this.position()[1]>=maxIslandHeight-15) {
+        //     music.volume=0.07;
+        //     windSound.volume=0.1;
+        //     windSound.play();
+        // }
+        // else if (this.position()[1]>=maxIslandHeight-20) {
+        //     music.volume=0.09;
+        //     windSound.volume=0.05;
+        //     windSound.play();
+        // }
+        // else if (this.position()[1]>=maxIslandHeight-25) {
+        //     music.volume=0.1;
+        //     windSound.volume=0.02;
+        //     windSound.play();
+        // }
+        // else {
+        //     music.volume=0.15;
+        //     windSound.pause();
+        //     windSound.currentTime=0;
+        // }
+        // //waves
+        // if(this.position()[1]<1.5) {
+        //     waveSound.volume=.2;
+        //     waveSound.play();
+        // }
+        // else if(this.position()[1]<8.0) {
+        //     waveSound.volume=.1;
+        //     waveSound.play();
+        // }
+        // else {
+        //     waveSound.volume=.01;
+        // }
 	}
 
 	
@@ -362,11 +362,11 @@ Player.prototype.handleKeyDown = function(e) {
 		case 68: // D - right
 			this.rightVelocity = this.movementSpeed;
 			break;
-		case 81: // Q - lean left
-			this.leanLeft = true;
-			break;
-		case 69: // E - lean right
-			this.leanRight = true;
+		// case 81: // Q - lean left
+		// 	this.leanLeft = true;
+		// 	break;
+		// case 69: // E - lean right
+		// 	this.leanRight = true;
 			break;
 		case 16: // SHIFT - run
 			this.isRunning = true;
@@ -421,11 +421,11 @@ Player.prototype.handleKeyUp = function(e) {
 		case 68: // D - right
 			this.rightVelocity = 0.0;
 			break;
-		case 81: // Q - lean left
-			this.leanLeft = false;
-			break;
-		case 69: // E - lean right
-			this.leanRight = false;
+		// case 81: // Q - lean left
+		// 	this.leanLeft = false;
+		// 	break;
+		// case 69: // E - lean right
+		// 	this.leanRight = false;
 			break;
 		case 16: // SHIFT - run
 			this.isRunning = false;

@@ -219,7 +219,7 @@ window.onload = function() {
     var firez = quarterSize + 10;
     
 	for(var i = 0; i < 10; i++){
-		campRocks.push(new CampRock(rockMaterial, new Texture.fromImageSrc('./images/rockTex.png'), gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.NEAREST, gl.NEAREST));
+		campRocks.push(new CampRock(rockMaterial, new Texture.fromImageSrc('/img/rockTex.png'), gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.NEAREST, gl.NEAREST));
         var rockx = firex + Math.cos(i*Math.PI/5);
         var rockz = firez + Math.sin(i*Math.PI/5);
         var rockyx = Math.trunc(rockx);
@@ -236,16 +236,17 @@ window.onload = function() {
 	// Set off the draw loop
 	draw();
     
-    setTimeout(function() {
-        cutscene=true;
-    }, 2000);
+    // setTimeout(function() {
+    //     cutscene=true;
+    // }, 2000);
     
     setTimeout(function() {
         // Attach our keyboard and mouse listeners to the canvas
-	pointerLock(canvas, function(x, y) {
-		player.camera.yawBy(-x * mouseSensitivity);
-		player.camera.pitchBy(-y * mouseSensitivity);
-	}, null);
+		pointerLock(canvas, function(x, y) {
+			// player.camera.yawBy(-x * mouseSensitivity);
+			// player.camera.pitchBy(-y * mouseSensitivity);
+		}, 
+	null);
 
 	// Attach our keyboard listener to the canvas
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
