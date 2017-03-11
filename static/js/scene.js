@@ -218,7 +218,7 @@ window.onload = function() {
     var firex = quarterSize + 10;
     var firez = quarterSize + 10;
     
-	for(var i = 0; i < 10; i++){
+	for(var i = 0; i < 10; i++) {
 		campRocks.push(new CampRock(rockMaterial, new Texture.fromImageSrc('/img/rockTex.png'), gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.NEAREST, gl.NEAREST));
         var rockx = firex + Math.cos(i*Math.PI/5);
         var rockz = firez + Math.sin(i*Math.PI/5);
@@ -243,8 +243,8 @@ window.onload = function() {
     setTimeout(function() {
         // Attach our keyboard and mouse listeners to the canvas
 		pointerLock(canvas, function(x, y) {
-			// player.camera.yawBy(-x * mouseSensitivity);
-			// player.camera.pitchBy(-y * mouseSensitivity);
+			player.camera.yawBy(-x * mouseSensitivity);
+			player.camera.pitchBy(-y * mouseSensitivity);
 		}, 
 	null);
 
