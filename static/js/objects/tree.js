@@ -13,11 +13,11 @@ var Tree = (function() {
 	function constructor(position, radius, height, age)
 	{
 		if(!foliageTex) {
-			foliageTex = new Texture.fromImageSrc('./images/foliage.png');
+			foliageTex = new Texture.fromImageSrc('/img/foliage.png');
 		}
 
 		if(!barkBumpMap) {
-			barkBumpMap = new Texture.fromImageSrc('./images/waves.jpg',gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR);
+			barkBumpMap = new Texture.fromImageSrc('/img/waves.jpg',gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR);
 		}
 
 		var foliageMaterial = new Material(
