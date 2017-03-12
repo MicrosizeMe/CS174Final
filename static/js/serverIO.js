@@ -87,3 +87,5 @@ var updateLoop = function() {
 	ioHandler.updateInfo();
 	setTimeout(updateInfo, 17);
 }
+
+updateLoop();
