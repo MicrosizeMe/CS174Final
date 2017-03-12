@@ -171,7 +171,6 @@ function handleResize() {
 // Init function to start GL and draw everything
 window.onload = function() {
 	canvas = document.getElementById(canvasId1);
-	handleResize();
 	gl = WebGLUtils.setupWebGL(canvas);
 
 	if(!gl) {
@@ -189,6 +188,7 @@ window.onload = function() {
 		alert(e);
 		throw e;
 	}
+	handleResize();
 
 	// Initialize the player
 	player = new Player(canvas, vec3(quarterSize, 0, -quarterSize), moveUnit); // pos parameter = player's initial position.
