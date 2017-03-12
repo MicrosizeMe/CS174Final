@@ -165,7 +165,7 @@ function handleOrientation(event) {
 	var gamma = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1)
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
-	//player.camera.setYaw(alpha);
+	player.camera.setYaw(alpha);
 	//player.camera.setRoll(beta);
 	player.camera.setPitch(gamma);
 
