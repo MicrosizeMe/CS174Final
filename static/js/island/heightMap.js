@@ -63,6 +63,6 @@ for(var x=islandSize-13; x>quarterSize; x--) {
     for(var z=islandSize-13; z>=quarterSize; z--) {
         //var rand=Math.random();
         //heights[x][z] = (rand <= 0.6) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
-        heights[x][z] = (x > 39) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
+        heights[x][z] = (x < 39) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
     }
 }
