@@ -36,7 +36,7 @@ var Island = (function() {
               var lr = [x+1, heights[x+1][z], z];
               var ur = [x+1, heights[x+1][z+1], z+1];
               
-              if (ul[1] <= 0.4) {
+              if (ul[1] <= 0.6) {
                     sandVertices.push(ll);
                     sandVertices.push(ul);
                     sandVertices.push(ur);
