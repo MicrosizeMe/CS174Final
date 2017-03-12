@@ -56,7 +56,7 @@ var mouseSensitivity = 0.1;
 
 var mode = "headset";
 
-// Helper to set shader attributes/uniforms
+// Set the shader attributes
 var glHelper = (function() {
 	var helper = {};
 	function setAttrib(name, vbo) {
@@ -122,8 +122,6 @@ var glHelper = (function() {
 		gl.uniform1i(loc, (arg ? 1 : 0));
 	}
 
-	//enable lighting will only work as expected when the object has a texture
-	//it is intended only for the fire so that it is always full lit.
 	helper.enableLighting = function(arg) {
 		var loc = gl.getUniformLocation(program, uniformEnableLighting);
 		gl.uniform1i(loc, (arg ? 1 : 0));
@@ -227,22 +225,9 @@ window.onload = function() {
         }
     }
     
-	// Set off the draw loop
 	draw();
     
-    // setTimeout(function() {
-    //     cutscene=true;
-    // }, 2000);
-    
     setTimeout(function() {
-        // Attach our keyboard and mouse listeners to the canvas
-		// pointerLock(canvas, function(x, y) {
-		// 	player.camera.yawBy(-x * mouseSensitivity);
-		// 	player.camera.pitchBy(-y * mouseSensitivity);
-		// }, 
-		// null);
-
-		// Attach our keyboard listener to the canvas
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
         var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
         var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
@@ -258,7 +243,6 @@ window.onload = function() {
 }
 
 function resetStuff() {
-	// Quick and dirty way to generate more sticks in the scene
 	var trees = Tree.getTrees();
 }
 
@@ -287,8 +271,6 @@ function draw() {
 	    resetStuff();
     }
 
-	//var skyColor = sun.skyColor;
-	//gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.enable(gl.DEPTH_TEST);
 
@@ -312,10 +294,8 @@ function draw() {
 		e.draw(dt, identMat);
 	});
     
-	player.draw(); // This will draw the crosshairs and arms on the screen
+	player.draw(); // Draw player on the phone screen
 	glHelper.setLightMaterial(sun.lightMaterial);
-	//light is reset here, position is taken care of
-	//by sun.draw which is the first shape drawn
 
 	player.draw();
     if(cutscene) {
