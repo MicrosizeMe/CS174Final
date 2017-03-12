@@ -167,7 +167,7 @@ function handleOrientation(event) {
 		player.camera.setRoll(beta);
 		player.camera.setPitch(gamma);
 
-		$("#output").text("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
+		$("p:last").html("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 	// }
 }
 
