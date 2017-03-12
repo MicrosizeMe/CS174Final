@@ -1,6 +1,6 @@
 "use strict"
 
-var steepness = .2;
+var steepness = .3;
 
 for(var x=quarterSize; x<islandSize; x++) {
     for(var z=quarterSize; z>0; z--) {
