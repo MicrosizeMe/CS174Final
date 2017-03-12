@@ -1,10 +1,10 @@
 "use strict";
-var footstepSound = new Audio("sounds/footstep.mp3");
+var footstepSound = new Audio("/sounds/footstep.mp3");
 footstepSound.volume = .9;
 
 var musicOn = true;
 
-var waveSound = new Audio("sounds/crisp_ocean_waves.mp3");
+var waveSound = new Audio("/sounds/crisp_ocean_waves.mp3");
 waveSound.loop = true;
 waveSound.volume= .2;
 
