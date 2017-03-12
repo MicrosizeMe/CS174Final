@@ -45,7 +45,7 @@ for(var x=1; x<quarterSize; x++) {
     for(var z=1; z<quarterSize; z++) {
         //var rand=Math.random();
         //heights[x][z] = (rand <= 0.6) ? ulAvg(x,z)+(steepness*Math.random()) : ulAvg(x,z)-(steepness*Math.random());
-        heights[x][z] = (x < quarterSize/2) ? ulAvg(x,z)+(steepness*Math.random()) : ulAvg(x,z)-(steepness*Math.random());
+        heights[x][z] = (x % 2 == 0) ? ulAvg(x,z)+(steepness*Math.random()) : ulAvg(x,z)-(steepness*Math.random());
     }
 }
 
@@ -54,15 +54,15 @@ for(var x=islandSize-1; x>quarterSize; x--) {
     for(var z=islandSize-1; z>=quarterSize; z--) {
         //var rand=Math.random();
         //heights[x][z] = (rand <= 0.55) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
-        heights[x][z] = (x < (3*quarterSize)/2) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
+        heights[x][z] = (x % 2 == 0) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
     }
 }
 
 // was 21
-for(var x=islandSize-13; x>quarterSize; x--) {
-    for(var z=islandSize-13; z>=quarterSize; z--) {
+for(var x=islandSize-21; x>quarterSize; x--) {
+    for(var z=islandSize-21; z>=quarterSize; z--) {
         //var rand=Math.random();
         //heights[x][z] = (rand <= 0.6) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
-        heights[x][z] = (x < 39) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
+        heights[x][z] = (x % 2 == 0) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
     }
 }
