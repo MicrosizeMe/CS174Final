@@ -160,7 +160,7 @@ function handleOrientation(event) {
 	// if (event.absolute) {
 	var alpha = -event.alpha; // Corresponding to yaw
 	//var beta = (90 - Math.abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
-	var beta = event.beta;
+	var beta = 90+event.beta;
 	var gamma = event.gamma; // Corresponding to pitch
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
