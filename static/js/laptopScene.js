@@ -213,17 +213,26 @@ window.onload = function() {
 	// Set off the draw loop
 	draw();
     
+	var refreshOrientation = function() {
+		player.camera.setYaw();
+		player.camera.setPitch();
+		player.camera.setRoll();
+		setTimeout(refreshOrientation, 20);
+	}
+
+	refreshOrientation();
     // setTimeout(function() {
     //     cutscene=true;
     // }, 2000);
     
+
     setTimeout(function() {
         // Attach our keyboard and mouse listeners to the canvas
-		pointerLock(canvas, function(x, y) {
-			player.camera.yawBy(-x * mouseSensitivity);
-			player.camera.pitchBy(-y * mouseSensitivity);
-		}, 
-		null);
+		// pointerLock(canvas, function(x, y) {
+		// 	player.camera.yawBy(-x * mouseSensitivity);
+		// 	player.camera.pitchBy(-y * mouseSensitivity);
+		// }, 
+		// null);
 
 		// Attach our keyboard listener to the canvas
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
