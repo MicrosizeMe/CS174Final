@@ -169,7 +169,7 @@ function handleOrientation(event) {
 	//player.camera.setRoll(beta);
 	//player.camera.setPitch(gamma);
 
-	$("#output").html("event.absolute: " + event.absolute + "\nalpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
+	$("#output").html("event.absolute: " + Math.trunc(event.absolute) + "\nalpha: " + Math.trunc(alpha) + "\nbeta: " + Math.trunc(beta) + "\ngamma: " + Math.trunc(gamma));
 	//$("#output").html("\nreal gamma: " + event.gamma);
 	// }
 }
