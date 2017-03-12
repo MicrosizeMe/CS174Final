@@ -51,7 +51,7 @@ module.exports = function(app) {
 	app.post('/apiSendInfo', function(req, res) {
 		var clientID = req.body.clientID;
 		var state = req.body.state;
-		console.log(req);
+		console.log(req.body);
 		if (clientID == null) {
 			return res.send({error: "Missing clientID!"});
 		}
