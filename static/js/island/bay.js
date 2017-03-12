@@ -27,7 +27,7 @@ for(var x=1; x<islandSize; x++) {
         heights[x][z]=findAvg(x,z);
     }
 }
-
+/*
 var minIslandHeight=0;
 var maxIslandHeight=0;
 for(var x=0; x<islandSize+1; x++) {
@@ -40,5 +40,5 @@ for(var x=0; x<islandSize+1; x++) {
         }
     }
 }
-
+*/
 

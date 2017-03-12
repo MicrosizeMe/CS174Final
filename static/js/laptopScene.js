@@ -22,9 +22,6 @@ var uniformUniformLighting = 'uniformLighting';
 var uniformEnableBumpingV   = 'enableBumpingV';
 var uniformEnableBumpingF   = 'enableBumpingF';
 
-//var stickCountId = 'stickCount';
-//var rockCountId = 'rockCount';
-
 var shapes = [];
 var sun;
 
