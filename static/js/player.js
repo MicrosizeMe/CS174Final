@@ -17,16 +17,17 @@ function Player(glCanvas, pos, speed) {
 	this.rightVelocity = 0.0;
 	this.movementSpeed = speed;
 	
-	this.armPower = 0.0;
-	this.maxArmPower = 0.015;
-	this.isCharging = false;
+	//this.armPower = 0.0;
+	//this.maxArmPower = 0.015;
+	//this.isCharging = false;
 	this.isRunning = false;
-
+    /*
 	this.numSticks = 0;
 	this.rocks = [];
 
 	this.maxSticks = 3;
 	this.maxRocks = 5;
+    */
 	
 	this.physical = new Physical(	vec3(0.0, -0.01, 0.0),	//acceleration
 									0.0,					//bounce
@@ -58,7 +59,7 @@ function Player(glCanvas, pos, speed) {
 
 		var newPos = add(startPosition, vec3(xV, yV, zV));
 		var trees = Tree.getTrees();
-		var sticks = Tree.getSticks();
+		//var sticks = Tree.getSticks();
 
 		var rad = radians(this.camera.yaw());
 		var sin = Math.sin(rad);
