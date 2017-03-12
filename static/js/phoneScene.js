@@ -170,6 +170,7 @@ function handleOrientation(event) {
 	player.camera.setPitch(gamma);
 
 	$("#output").html("event.absolute: " + event.absolute + "\nalpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
+	$("#output").html("\nreal gamma: " + event.gamma);
 	// }
 }
 
