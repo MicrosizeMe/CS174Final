@@ -21,17 +21,9 @@
 		<script type="text/javascript" src="shapes/plane.js"></script>
 		<script type="text/javascript" src="sky.js"></script>
 		<script type="text/javascript" src="shapes/hexagonalPrism.js"></script>
-		<script type="text/javascript" src="shapes/hexagonalPyramid.js"></script>
-		<script type="text/javascript" src="objects/rock.js"></script>
 		<script type="text/javascript" src="objects/tree.js"></script>
-		<script type="text/javascript" src="objects/camprock.js"></script>
-		<script type="text/javascript" src="objects/stick.js"></script>
-		<script type="text/javascript" src="objects/campfire.js"></script>
-		<script type="text/javascript" src="objects/paperTree.js"></script>
 		<script type="text/javascript" src="island/island.js"></script>
-
 		<script type="text/javascript" src="scene.js"></script>
-
 		<script id="shader-vertex" type="x-shader/x-vertex">
 			precision mediump float;
 
@@ -147,44 +139,19 @@
 				gl_FragColor = fColor * texture2D(uSampler, fUV);
 			}
 		</script>
-
-		<style>
-			.columns {
-				columns: 2;
-				-webkit-columns: 2;
-				-moz-columns: 2;
-			}
-		</style>
 	</head>
+    <canvas id="gl-canvas" style="background: url('./images/sky.jpg')" width="900" height="600" class="centered">
+        Sorry, your browser does not support WebGL.
+    </canvas>
 	<body>
 		<div style="width: 720px; margin: auto;">
 			<center>
 				<h2>Island Vacation</h2>
 				<h3>Vamsi Mokkapati, Anbo Wei, Sabrina Chiang</h3>
 			</center>
-            <!--width="720" height="480" class="centered"-->
-			<canvas id="gl-canvas" width="720" height="480" class="centered">
-				Sorry, your browser does not support WebGL.
-			</canvas>
-
-			<br />
-			<center><strong>Inventory</strong></center>
-			<ul>
-				<li id='stickCount'>Sticks: 0</li>
-				<li id='rockCount'>Rocks: 0</li>
-			</ul>
-			<br />
-			<center><strong>Controls</strong></center>
-			<ul class="columns">
-				<li>Move around with <strong>W</strong>, <strong>A</strong>, <strong>S</strong>, <strong>D</strong></li>
-				<li>Jump with <strong>SPACE</strong></li>
-				<li>Look around with <strong>the mouse</strong></li>
-				<li>Run by holding <strong>SHIFT</strong> while moving forward</li>
-				<li>Add stick to fire with <strong>T</strong> while at firepit</li>
-				<li>Charge up throw with <strong>mouse down</strong></li>
-				<li>Throw rock <strong>mouse up</strong></li>
-				<li>Toggle music with <strong>M</strong></li>
-			</ul>
+            <ul class="columns">
+                <li>Use <strong>W</strong>, <strong>A</strong>, <strong>S</strong>, and <strong>D</strong> to move around the island!</li>
+                <li>Use the mouse to look around!</li>
 		</div>
 	</body>
 </html>

@@ -2,35 +2,17 @@
 
 var steepness = .2;
 
-//ur
-/*
-for(var x=islandSize-1; x>=quarterSize; x--) {
-    for(var z=1; z<quarterSize; z++) {
-        var rand=Math.random();
-        if(rand<=0.55) {
-            heights[x][z]=urAvg(x,z)+(steepness*Math.random());
-        }
-        else {
-            heights[x][z]=urAvg(x,z)-(steepness*Math.random());
-        }
-    }
-}
-*/
-
 for(var x=quarterSize; x<islandSize; x++) {
     for(var z=quarterSize; z>0; z--) {
         var rand=Math.random();
-        if(rand<=0.3) {
-            heights[x][z]=llAvg(x,z)+(.2*steepness*Math.random());
+        if(rand <= 0.5) {
+            heights[x][z]=llAvg(x,z)+(steepness*Math.random());
         }
         else {
             heights[x][z]=llAvg(x,z)-(steepness*Math.random());
         }
     }
 }
-
-
-
 
 //clean up
 

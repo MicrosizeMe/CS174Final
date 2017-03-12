@@ -147,7 +147,7 @@ var glHelper = (function() {
 
 	helper.setLightPosition = function(vec) {
 		var loc = gl.getUniformLocation(program, uniformLightPosition);
-		gl.uniform3fv(loc, flatten(vec));
+                gl.uniform3fv(loc, flatten(vec));
 	}
 
 	return helper;
@@ -175,17 +175,12 @@ window.onload = function() {
 	}
 
 	// Initialize the player
-	player = new Player(canvas, vec3(quarterSize-20, 0, -quarterSize+20), moveUnit); // pos parameter = player's initial position.
-
-	var waterMaterial = new Material(
-		vec4(0.2, 0.2, 0.5, 0.8),
-		vec4(0.2, 0.2, 0.7, 0.8)
-	);
-
-	var rockMaterial = new Material(
-		vec4(0.9, 0.9, 0.9, 1.0),
-		vec4(0.9, 0.9, 0.9, 1.0)
-	);
+	player = new Player(canvas, vec3(quarterSize, 0, -quarterSize), moveUnit); // pos parameter = player's initial position.
+    
+    var waterMaterial = new Material(
+        vec4(0.117, 0.5647, 1, 1),
+        vec4(0.117, 0.5647, 1, 1)
+    );
     
 	var water = new Cube(waterMaterial, null, true, false);
 	water.position = vec3(islandSize * 0.66, 0.0, islandSize * 0.66);
@@ -196,42 +191,22 @@ window.onload = function() {
     sun = new Sun(300);
 	shapes = [water, theIsland];
     
-	for (var x=1; x<quarterSize; x+=2)
-	{
-        for(var z=1; z<quarterSize; z+=2)
+    for (var x=1; x<islandSize; x+=2)
+    {
+        for(var z=1; z<islandSize; z+=2)
         {
             var kXZ = 2.5 * (Math.random() + 1.5);
             var kY = 4.0 * (Math.random() * 0.3 +1.0);
             var age = Math.random();
             var rand = Math.random();
-            if(heights[x][z]>0.21 && rand<=0.02 && (x < 49 || x > 51 || z < 29 || z > 31)) {
+            if(heights[x][z]>0.21 && rand<=0.03 && (x < 49 || x > 51 || z < 29 || z > 31)) {
                 new Tree(
-                    vec3(x, heights[x][z]-0.5, z),
-				    kXZ, kY,
-                    age);
+                         vec3(x, heights[x][z] - 0.5, z),
+                         kXZ, kY,
+                         age);
             }
         }
-	}
-    
-    
-	//create rocks in a circle to signify campsite
-    var firex = quarterSize + 10;
-    var firez = quarterSize + 10;
-    
-	for(var i = 0; i < 10; i++){
-		campRocks.push(new CampRock(rockMaterial, new Texture.fromImageSrc('./images/rockTex.png'), gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE, gl.NEAREST, gl.NEAREST));
-        var rockx = firex + Math.cos(i*Math.PI/5);
-        var rockz = firez + Math.sin(i*Math.PI/5);
-        var rockyx = Math.trunc(rockx);
-        var rockyz = Math.trunc(rockz);
-        var rocky = findAvg(rockyx, rockyz);
-		campRocks[i].position = vec3(rockx, rocky + 0.1, rockz);
-		campRocks[i].scale = vec3(1.0, 1.0, 1.0);
-		}
-
-	fire = new Campfire(vec3(firex, heights[firex][firez]+0.1, firez));
-	fire.numSticks = 0.0;
-    
+    }
     
 	// Set off the draw loop
 	draw();
@@ -264,22 +239,6 @@ window.onload = function() {
 function resetStuff() {
 	// Quick and dirty way to generate more sticks in the scene
 	var trees = Tree.getTrees();
-	var stickDiff = trees.length - (Tree.getSticks().length + player.numSticks);
-	for(var i = 0; i < stickDiff; i++) {
-		var index = Math.floor(Math.random * trees.length);
-		trees[i].addStick();
-	}
-
-	var rocks = Rock.getRocks();
-	var rockDiff = totalRocks - (rocks.length + player.rocks.length);
-	for(var i = 0; i < rockDiff; i++) {
-		var x = Math.random() * (islandSize - 1);
-		var z = Math.random() * (islandSize - 1);
-
-		var size = (Math.random() * 0.1) + 0.1;
-
-		new Rock(vec3(x, 0, z), size);
-	}
 }
 
 
@@ -304,9 +263,7 @@ function draw() {
 	    resetCount = 0;
 	    resetStuff();
     }
-
-	var skyColor = sun.skyColor;
-	gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
+    
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.enable(gl.DEPTH_TEST);
 
@@ -329,21 +286,8 @@ function draw() {
 		dt += timer.getElapsedTime();
 		e.draw(dt, identMat);
 	});
-
-	Rock.getRocks().forEach(function(r) {
-		dt += timer.getElapsedTime();
-		r.draw(dt, identMat);
-	});
-
+    
 	player.draw(); // This will draw the crosshairs and arms on the screen
-
-	//fire will change liht material and position and draw rocks
-	//with that light. 
-	fire.draw(dt, identMat);
-	campRocks.forEach(function(e) {
-		dt += timer.getElapsedTime();
-		e.draw(dt, identMat);
-	});
 	glHelper.setLightMaterial(sun.lightMaterial);
 	//light is reset here, position is taken care of
 	//by sun.draw which is the first shape drawn
