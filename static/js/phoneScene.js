@@ -162,7 +162,7 @@ function handleOrientation(event) {
 }
 
 function handleResize() {
-	canvas.width = window.innerWidth;
+	canvas.width = window.innerWidth/2;
 	canvas.height = window.innerHeight;
 }
 
@@ -170,6 +170,7 @@ function handleResize() {
 // Init function to start GL and draw everything
 window.onload = function() {
 	canvas = document.getElementById(canvasId1);
+	handleResize();
 	gl = WebGLUtils.setupWebGL(canvas);
 
 	if(!gl) {
