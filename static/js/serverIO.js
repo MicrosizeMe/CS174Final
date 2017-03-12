@@ -47,11 +47,7 @@ var IOHandler = function(mode) {
 			};
 		}
 
-		$.ajax({
-			method: "POST",
-			url: "/apiSendInfo",
-			data: pushInfo
-		}).done(function(data) {
+		$.post("/apiSendInfo", pushInfo, function(data) {
 			console.log("!!!");
 			if (mode == "laptop") {
 				this.state.yaw = data.yaw;
@@ -63,7 +59,7 @@ var IOHandler = function(mode) {
 				this.state.posY = data.posY;
 				this.state.posZ = data.posZ;
 			}
-		});
+		}, 'json');
 	};
 
 	this.setPos = function(x, y, z) {
