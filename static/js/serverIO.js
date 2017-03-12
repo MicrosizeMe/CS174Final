@@ -27,7 +27,6 @@ var IOHandler = function(mode) {
 	// Poll information from the server and push information 
 	// as relevant.
 	this.updateInfo = function() {
-		console.log("startingUpdate");
 		// Get information to be pushed
 		var pushInfo = {};
 		if (mode == "laptop") {
@@ -52,10 +51,11 @@ var IOHandler = function(mode) {
 		$.ajax({
 			method: "POST",
 			url: "/apiSendInfo",
-			data: pushInfo,
+			// data: pushInfo,
+			contentType: 'application/json',
 			dataType: "json",
+			data: JSON.stringify(pushInfo)
 		}).done(function(data) {
-			console.log("!!!");
 			if (mode == "laptop") {
 				this.state.yaw = data.yaw;
 				this.state.pitch = data.pitch;
