@@ -54,7 +54,7 @@ for(var x=islandSize-1; x>quarterSize; x--) {
     for(var z=islandSize-1; z>=quarterSize; z--) {
         //var rand=Math.random();
         //heights[x][z] = (rand <= 0.55) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
-        heights[x][z] = (x > (3*quarterSize)/2) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
+        heights[x][z] = (x < (3*quarterSize)/2) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
     }
 }
 
