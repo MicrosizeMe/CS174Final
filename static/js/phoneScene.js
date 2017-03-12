@@ -206,7 +206,7 @@ window.onload = function() {
         {
             var kXZ = 2.5 * (0.5 + 1.5);
             var kY = 4.0 * (0.5 * 0.3 +1.0);
-            if (/*(x >= 19 && x <= 41 && z >= 19 && z <= 41) && */x == z) {
+            if ((x >= 19 && x <= 41 && z >= 19 && z <= 41) && x == z) {
                 new Tree(
                          vec3(x, heights[x][z] - 0.5, z),
                          kXZ, kY);
