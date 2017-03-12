@@ -155,6 +155,18 @@ var glHelper = (function() {
 	return helper;
 })();
 
+function handleOrientation(event) {
+	if (event.absolute) {
+		var alpha = event.alpha; // Corresponding to yaw
+		var beta = (90 - abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
+		var gamma = event.gamma; // Corresponding to pitch
+
+		player.camera.setYaw(alpha);
+		player.camera.setRoll(beta);
+		player.camera.setPitch(gamma);
+	}
+}
+
 // Init function to start GL and draw everything
 window.onload = function() {
 	canvas = document.getElementById(canvasId);
@@ -238,18 +250,6 @@ window.onload = function() {
     }, 3000);
 
     resetStuff();
-}
-
-function handleOrientation(event) {
-	if (event.absolute) {
-		var alpha = event.alpha; // Corresponding to roll
-		var beta = event.beta; // Corresponding to yaw
-		var gamma = event.gamma; // Corresponding to pitch
-
-		player.camera.setYaw(beta);
-		player.camera.setPitch(gamma);
-		player.camera.setRoll(alpha);
-	}
 }
 
 function resetStuff() {
