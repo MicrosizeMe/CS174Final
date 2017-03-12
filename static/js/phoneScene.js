@@ -200,9 +200,9 @@ window.onload = function() {
 	shapes = [water, theIsland];
     
     // Specified Tree Placement
-    for (var x=1; x<islandSize; x+=4)
+    for (var x=1; x<islandSize; x+=12)
     {
-        for(var z=1; z<islandSize; z+=4)
+        for(var z=1; z<islandSize; z+=12)
         {
             var kXZ = 2.5 * (0.5 + 1.5);
             var kY = 4.0 * (0.5 * 0.3 +1.0);
