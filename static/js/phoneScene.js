@@ -26,11 +26,7 @@ var uniformEnableBumpingF   = 'enableBumpingF';
 //var rockCountId = 'rockCount';
 
 var shapes = [];
-var campRocks = [];
-var fire;
-var bumpCube;
 var sun;
-var totalRocks = 5;
 
 var gl;	     // WebGL object for the canvas
 var canvas;  // HTML canvas element that we are drawing in
@@ -42,12 +38,6 @@ var resetCount = 0;
 var timer = new Timer();
 
 var cutscene = false;
-
-/*
-var music = new Audio("sounds/islandMusic2.mp3");
-music.loop = true;
-var isNighttime = false;
-*/
 
 // Steps in for moving camera
 var rotateDegree = 1;
@@ -249,21 +239,6 @@ function resetStuff() {
 
 // Draws the data in the vertex buffer on the canvas repeatedly
 function draw() {
-    /*
-    if(sun.angle>180 && sun.angle<360) {
-        isNighttime=true;
-    }
-    else {
-        isNighttime=false;
-    }
-    if(isNighttime && musicOn) {
-        //music.currentTime=0;
-        music.play();
-    }
-    else {
-        music.pause();
-    }
-    */
 
     resetCount++;
     if(resetCount > 1000) {

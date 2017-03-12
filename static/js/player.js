@@ -2,8 +2,6 @@
 var footstepSound = new Audio("/sounds/footstep.mp3");
 footstepSound.volume = .9;
 
-var musicOn = true;
-
 var waveSound = new Audio("/sounds/crisp_ocean_waves.mp3");
 waveSound.loop = true;
 waveSound.volume= .2;
@@ -225,13 +223,6 @@ Player.prototype.handleKeyDown = function(e) {
 				this.physical.setVelocity(vec3(0.0, 0.10, 0.0));
 			}
 			break;
-            /*
-        case 77: // M music on/off
-            musicOn=!musicOn;
-            if(musicOn && isNighttime){music.play();}
-            else{music.pause();}
-            break;
-            */
     }
     
 }
