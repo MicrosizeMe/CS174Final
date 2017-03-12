@@ -57,6 +57,7 @@ module.exports = function(app) {
 		if (state == null) {
 			return res.send({error: "Missing state!"});
 		}
+		console.log("Received: " + state);
 
 		// Update the appropriate state and return the other one.
 		if (clientID == "laptop") {
