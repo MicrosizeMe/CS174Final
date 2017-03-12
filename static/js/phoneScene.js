@@ -22,8 +22,8 @@ var uniformUniformLighting = 'uniformLighting';
 var uniformEnableBumpingV   = 'enableBumpingV';
 var uniformEnableBumpingF   = 'enableBumpingF';
 
-var stickCountId = 'stickCount';
-var rockCountId = 'rockCount';
+//var stickCountId = 'stickCount';
+//var rockCountId = 'rockCount';
 
 var shapes = [];
 var campRocks = [];
@@ -37,16 +37,17 @@ var canvas;  // HTML canvas element that we are drawing in
 var program; // The WebGL linked program
 var camera;  // Camera used for navigating the scene
 var player;
-//var pig;
 var resetCount = 0;
 
 var timer = new Timer();
 
 var cutscene = false;
 
+/*
 var music = new Audio("sounds/islandMusic2.mp3");
 music.loop = true;
 var isNighttime = false;
+*/
 
 // Steps in for moving camera
 var rotateDegree = 1;
@@ -264,6 +265,7 @@ function resetStuff() {
 
 // Draws the data in the vertex buffer on the canvas repeatedly
 function draw() {
+    /*
     if(sun.angle>180 && sun.angle<360) {
         isNighttime=true;
     }
@@ -277,6 +279,7 @@ function draw() {
     else {
         music.pause();
     }
+    */
 
     resetCount++;
     if(resetCount > 1000) {
