@@ -110,7 +110,7 @@ var Island = (function() {
 			throw "Unable to init Island data, gl not defined";
 		}
 
-        groundTexture = new Texture.fromImageSrc('/img/grass2.jpg');
+        groundTexture = new Texture.fromImageSrc('/img/grass.jpg');
         //mtnTexture = new Texture.fromImageSrc('/img/rock.jpg');
         //mtn2Texture = new Texture.fromImageSrc('/img/rock2.jpg');
         sandTexture = new Texture.fromImageSrc('/img/sand.jpg');

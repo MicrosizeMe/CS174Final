@@ -12,7 +12,7 @@ var Tree = (function() {
             function constructor(position, radius, height, age)
             {
             if(!foliageTex) {
-            foliageTex = new Texture.fromImageSrc('./images/foliage.png');
+            foliageTex = new Texture.fromImageSrc('/img/foliage.png');
             }
             
             var foliageMaterial = new Material(
