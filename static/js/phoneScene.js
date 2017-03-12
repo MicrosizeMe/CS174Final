@@ -164,6 +164,8 @@ function handleOrientation(event) {
 		player.camera.setYaw(alpha);
 		player.camera.setRoll(beta);
 		player.camera.setPitch(gamma);
+
+		output.innerHTML = "alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma;
 	}
 }
 
