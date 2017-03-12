@@ -1,6 +1,6 @@
 var Tree = (function() {
             var trees = [];
-            var sticks = [];
+            //var sticks = [];
             
             var trunkMaterial = new Material(
                                              vec4(0.627, 0.322, 0.176, 1.0),
@@ -28,7 +28,7 @@ var Tree = (function() {
             this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
             this.foliageRound.radius = 2;
             
-            this.stick = null;
+            //this.stick = null;
             
             trees.push(this);
             }
@@ -37,9 +37,11 @@ var Tree = (function() {
             return trees;
             }
             
+            /*
             constructor.getSticks = function() {
             return sticks;
             }
+            */
             
             constructor.drawTrees = function(dt) {
             var identMat = mat4();
@@ -88,11 +90,13 @@ Tree.prototype.draw = function(dt, mat) {
     this.trunk.draw(dt, mat);
     this.foliageRound.draw(dt, mat);
     
+    /*
     if(this.stick) {
         this.stick.draw(dt, mat);
     }
+    */
 }
-
+/*
 Tree.prototype.addStick = function() {
     if(this.stick) {
         return;
@@ -116,3 +120,4 @@ Tree.prototype.addStick = function() {
     
     Tree.getSticks().push(this.stick);
 }
+*/

@@ -1,7 +1,6 @@
 "use strict"
 
 var islandSize = 60;
-var tempSize = islandSize;
 var quarterSize = Math.trunc(islandSize*.5);
 var heights = [];
 var steepness = .2;
