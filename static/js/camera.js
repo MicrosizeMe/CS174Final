@@ -25,26 +25,43 @@ function Camera(glCanvas) {
 	var roll = 0;
 	var lean = 0;
 
-	// Positve right strafes camera right
-	// Positve up lifts camera up
-	// Positive forward strafes camera forward
-	this.moveBy = function(right, up, forward) {
-		var rad = radians(yaw);
-		var sin = Math.sin(rad);
-		var cos = Math.cos(rad);
-
-		var translation = vec3(
-			(forward * sin) + (right * cos),
-			up,
-			(forward * cos) - (right * sin)
-		);
-
-		position = add(position, translation);
-	};
 
 	this.updatePosition = function(x, y, z) {
 		position = vec3(x, y, z);
 	}
+	
+	// Positve right strafes camera right
+	// Positve up lifts camera up
+	// Positive forward strafes camera forward
+	// If mode = "laptop", change the camera position based on input 
+	// and save that information in the IO handler.
+	// Otherwise, update position based on information 
+	// from serverIO.
+	this.moveBy = function(right, up, forward) {
+		if (mode == "laptop") {
+			var rad = radians(yaw);
+			var sin = Math.sin(rad);
+			var cos = Math.cos(rad);
+
+			var translation = vec3(
+				(forward * sin) + (right * cos),
+				up,
+				(forward * cos) - (right * sin)
+			);
+
+			position = add(position, translation);
+			ioHandler.state.posX = position[0];
+			ioHandler.state.posY = position[1];
+			ioHandler.state.posZ = position[2];
+		}
+		else if (mode == "headset") {
+			position = vec3(
+				ioHandler.state.posX, 
+				ioHandler.state.posY, 
+				ioHandler.state.posZ
+			);
+		}
+	};
 
 	this.yaw = function() {
 		return -yaw;
@@ -54,29 +71,50 @@ function Camera(glCanvas) {
 		return pitch;
 	}
 
+	this.getRoll = function() {
+        return roll;
+    }
+
 	this.position = function() {
 		return vec3(position[0], position[1], -position[2]);
 	}
 
 	// Positive angle corresponds to yawing left
+	// If the mode is "laptop", set the camera yaw to the 
+	// information from the serverIO.
+	// Otherwise, preform yaw calculations (?) and push them
+ 	// to the server.
 	this.yawBy = function(angle) {
-		yaw = (yaw - angle) % 360;
+		if (mode == "laptop")
+			yaw = ioHandler.state.yaw;
+		else if (mode == "headset") {
+			yaw = (yaw - angle) % 360;
+			ioHandler.state.yaw = yaw;
+		}
 	}
 
 	// Positive angle corresponds to pitching up
+	// Same logic as above.
 	this.pitchBy = function(angle) {
-		pitch = Math.max(-90, Math.min(90, (pitch - angle)));
+		if (mode == "laptop")
+			pitch = ioHandler.state.pitch;
+		else if (mode == "headset") {
+			pitch = Math.max(-90, Math.min(90, (pitch - angle)));
+			ioHandler.state.pitch = pitch;
+		}
 	}
 
 	// Positive angle corresponds to rolling camera left
 	// (world rotates to the right)
+	// Same logic as above.
 	this.rollBy = function(angle) {
-		roll = (roll - angle) % 360;
+		if (mode == "laptop")
+			roll = ioHandler.state.roll;
+		else if (mode == "headset") {
+			roll = (roll - angle) % 360;
+			ioHandler.state.roll = roll;
+		}
 	}
-    
-    this.getRoll = function() {
-        return roll;
-    }
 
 	this.getProjViewMatrix = function() {
 		var hwRatio = canvas.height / canvas.width;
