@@ -179,40 +179,14 @@ window.onload = function() {
     sun = new Sun(300);
 	shapes = [water, theIsland];
     
-    /*
-    for (var x=1; x<islandSize; x+=2)
+    // Specified Tree Placement
+    for (var x=1; x<islandSize; x+=8)
     {
-        for(var z=1; z<islandSize; z+=2)
-        {
-            var kXZ = 2.5 * (Math.random() + 1.5);
-            var kY = 4.0 * (Math.random() * 0.3 +1.0);
-            var age = Math.random();
-            var rand = Math.random();
-            if(heights[x][z]>0.21 && rand<=0.03 && (x < 49 || x > 51 || z < 29 || z > 31)) {
-                new Tree(
-                         vec3(x, heights[x][z] - 0.5, z),
-                         kXZ, kY,
-                         age);
-            }
-        }
-    }
-    */
-    
-    // Non-random tree placement
-    for (var x=1; x<islandSize; x+=2)
-    {
-        for(var z=1; z<islandSize; z+=2)
+        for(var z=1; z<islandSize; z+=8)
         {
             var kXZ = 2.5 * (0.5 + 1.5);
             var kY = 4.0 * (0.5 * 0.3 +1.0);
-            /*
-            if(heights[x][z]>0.21 && (x == 20 || x == 40) && (z < 29 || z > 31)) {
-                new Tree(
-                         vec3(x, heights[x][z] - 0.5, z),
-                         kXZ, kY);
-            }
-            */
-            if (x == 19 || x == 41) {
+            if ((x >= 19 && x <= 41 && z >= 19 && z <= 41) && x == z) {
                 new Tree(
                          vec3(x, heights[x][z] - 0.5, z),
                          kXZ, kY);
