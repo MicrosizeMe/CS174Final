@@ -163,7 +163,7 @@ function handleOrientation(event) {
 	// var yaw = -event.alpha; // Corresponding to yaw
 	var yaw = (pitch >= 0) ? (-event.alpha + 180) : -event.alpha; // Corresponding to yaw
 	//var beta = (90 - Math.abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
-	var roll = event.beta;
+	var roll = (pitch >= 0) ? -event.beta : event.beta;
 	
 	player.camera.setYaw(yaw);
 	player.camera.setRoll(roll);
