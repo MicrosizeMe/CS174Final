@@ -165,12 +165,12 @@ function handleOrientation(event) {
 	var gamma = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1)
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
-	player.camera.setYaw(alpha);
-	player.camera.setRoll(beta);
+	//player.camera.setYaw(alpha);
+	//player.camera.setRoll(beta);
 	player.camera.setPitch(gamma);
 
 	$("#output").html("event.absolute: " + event.absolute + "\nalpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
-	$("#output").html("\nreal gamma: " + event.gamma);
+	//$("#output").html("\nreal gamma: " + event.gamma);
 	// }
 }
 
