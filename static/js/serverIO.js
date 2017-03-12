@@ -13,7 +13,7 @@ is sent to the server and camera angle data is received from it, or
 */
 
 var mode = "laptop";
-var ioHandlerGenerator = function(mode) {
+var IOHandler = function(mode) {
 	this.mode = mode;
 	this.state = {
 		posX: 0,
@@ -78,7 +78,7 @@ var ioHandlerGenerator = function(mode) {
 }; 
 
 // Assume mode is a global variable declared elsewhere.
-var ioHandler = ioHandlerGenerator(mode);
+var ioHandler = new IOHandler(mode);
 
 var updateLoop = function() {
 	// Call the ioHandler's update function
