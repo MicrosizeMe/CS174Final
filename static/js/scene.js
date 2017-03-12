@@ -263,7 +263,9 @@ function draw() {
 	    resetCount = 0;
 	    resetStuff();
     }
-    
+
+	//var skyColor = sun.skyColor;
+	//gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.enable(gl.DEPTH_TEST);
 
