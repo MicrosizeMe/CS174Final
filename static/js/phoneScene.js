@@ -161,13 +161,13 @@ function handleOrientation(event) {
 		var alpha = event.alpha; // Corresponding to yaw
 		var beta = (90 - abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
 		var gamma = event.gamma; // Corresponding to pitch
+		alert("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
 		player.camera.setYaw(alpha);
 		player.camera.setRoll(beta);
 		player.camera.setPitch(gamma);
 
 		// $("#output").text("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
-		alert("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 	}
 }
 
