@@ -58,6 +58,8 @@ module.exports = function(app) {
 			return res.send({error: "Missing state!"});
 		}
 
+		console.log(req.body);
+
 		// Update the appropriate state and return the other one.
 		if (clientID == "laptop") {
 			laptopState = state;
