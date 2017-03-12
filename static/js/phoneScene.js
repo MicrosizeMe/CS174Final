@@ -221,7 +221,14 @@ window.onload = function() {
         {
             var kXZ = 2.5 * (0.5 + 1.5);
             var kY = 4.0 * (0.5 * 0.3 +1.0);
-            if(heights[x][z]>0.21 && (x == 15 || x == 45) && (z < 29 || z > 31)) {
+            /*
+            if(heights[x][z]>0.21 && (x == 20 || x == 40) && (z < 29 || z > 31)) {
+                new Tree(
+                         vec3(x, heights[x][z] - 0.5, z),
+                         kXZ, kY);
+            }
+            */
+            if (x == 19 || x == 41) {
                 new Tree(
                          vec3(x, heights[x][z] - 0.5, z),
                          kXZ, kY);

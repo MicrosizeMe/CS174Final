@@ -4,13 +4,9 @@ var steepness = .2;
 
 for(var x=quarterSize; x<islandSize; x++) {
     for(var z=quarterSize; z>0; z--) {
-        var rand=Math.random();
-        if(rand <= 0.5) {
-            heights[x][z]=llAvg(x,z)+(steepness*Math.random());
-        }
-        else {
-            heights[x][z]=llAvg(x,z)-(steepness*Math.random());
-        }
+        //var rand=Math.random();
+        //heights[x][z] = (rand <= 0.5) ? llAvg(x,z)+(steepness*Math.random()) : llAvg(x,z)-(steepness*Math.random());
+        heights[x][z] = (x < islandSize/2) ? llAvg(x,z)+(steepness*Math.random()) : llAvg(x,z)-(steepness*Math.random());
     }
 }
 
