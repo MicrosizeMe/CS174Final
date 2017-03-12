@@ -11,6 +11,8 @@ is sent to the server and camera angle data is received from it, or
 "headset", in which case the opposite occurs.
 
 */
+
+var mode = "laptop";
 var ioHandlerGenerator = function(mode) {
 	this.mode = mode;
 	this.state = {
