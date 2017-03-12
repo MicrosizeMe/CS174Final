@@ -164,6 +164,7 @@ function handleOrientation(event) {
 function handleResize() {
 	canvas.width = window.innerWidth/2;
 	canvas.height = window.innerHeight;
+	gl.viewport(0, 0, canvas.width, canvas.height);
 }
 
 
