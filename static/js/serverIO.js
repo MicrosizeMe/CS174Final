@@ -27,6 +27,7 @@ var IOHandler = function(mode) {
 	// Poll information from the server and push information 
 	// as relevant.
 	this.updateInfo = function() {
+		console.log("startingUpdate");
 		// Get information to be pushed
 		var pushInfo = {};
 		if (mode == "laptop") {
@@ -51,6 +52,7 @@ var IOHandler = function(mode) {
 			url: "/apiSendInfo",
 			data: pushInfo
 		}).done(function(data) {
+			console.log("!!!");
 			if (mode == "laptop") {
 				this.state.yaw = data.yaw;
 				this.state.pitch = data.pitch;
