@@ -1,6 +1,6 @@
 "use strict";
 
-var canvasId         = 'gl-canvas';
+var canvasId1         = 'gl-canvas1';
 var vertexSourceId   = 'shader-vertex';
 var fragmentSourceId = 'shader-fragment';
 
@@ -161,9 +161,15 @@ function handleOrientation(event) {
 	// }
 }
 
+function handleResize() {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+}
+
+
 // Init function to start GL and draw everything
 window.onload = function() {
-	canvas = document.getElementById(canvasId);
+	canvas = document.getElementById(canvasId1);
 	gl = WebGLUtils.setupWebGL(canvas);
 
 	if(!gl) {
@@ -252,6 +258,7 @@ window.onload = function() {
     	window.addEventListener('mousedown', playerHandleMouseDown);
 		window.addEventListener('mouseup', playerHandleMouseUp);
 		window.addEventListener('deviceorientation', handleOrientation);
+		window.onresize = handleResize;
     }, 3000);
 
     resetStuff();
