@@ -156,16 +156,16 @@ var glHelper = (function() {
 })();
 
 function handleOrientation(event) {
-	// alert("Lol");
+	alert(event);
 	// if (event.absolute) {
-		var alpha = event.alpha; // Corresponding to yaw
-		var beta = (90 - abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
-		var gamma = event.gamma; // Corresponding to pitch
-		alert("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
+	var alpha = event.alpha; // Corresponding to yaw
+	var beta = (90 - abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
+	var gamma = event.gamma; // Corresponding to pitch
+	alert("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
-		player.camera.setYaw(alpha);
-		player.camera.setRoll(beta);
-		player.camera.setPitch(gamma);
+	player.camera.setYaw(alpha);
+	player.camera.setRoll(beta);
+	player.camera.setPitch(gamma);
 
 		// $("p:last").html("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 	// }
