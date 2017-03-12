@@ -1,19 +1,12 @@
 "use strict";
-var footstepSound = new Audio("sounds/footstep.wav");
+var footstepSound = new Audio("sounds/footstep.mp3");
 footstepSound.volume = .9;
 
 var musicOn = true;
 
-var windSound = new Audio("sounds/wind.mp3");
-windSound.loop=true;
-
-var waveSound = new Audio("sounds/wave.mp3");
-waveSound.loop=true;
-waveSound.volume=.2;
-
-var fireSound = new Audio("sounds/fire.wav");
-fireSound.loop=true;
-fireSound.volume=0.5;
+var waveSound = new Audio("sounds/crisp_ocean_waves.mp3");
+waveSound.loop = true;
+waveSound.volume= .2;
 
 function Player(glCanvas, pos, speed) {
 	this.camera = new Camera(glCanvas);
@@ -71,7 +64,6 @@ function Player(glCanvas, pos, speed) {
 		var newPos = add(startPosition, vec3(xV, yV, zV));
 		var trees = Tree.getTrees();
 		var sticks = Tree.getSticks();
-		var worldRocks = Rock.getRocks();
 
 		var rad = radians(this.camera.yaw());
 		var sin = Math.sin(rad);
@@ -95,60 +87,7 @@ function Player(glCanvas, pos, speed) {
 				break;
 			}
 		}
-
-		var flyingRocks = [];
-		worldRocks.forEach(function(r) {
-			if(r.physical.isMoving()) {
-				flyingRocks.push(r);
-			}
-		});
-
-		for (var i = 0; i < worldRocks.length; i++)
-		{
-			var r = worldRocks[i];
-			var pos = r.position();
-			if (heightOf(pos[0], pos[2]) <= 0.05)
-				worldRocks.splice(i, 1);
-		}
-
-		if(this.numSticks < this.maxSticks) {
-			for(var i = 0; i < sticks.length; i++) {
-				var s = sticks[i];
-				if(s.checkCollision(newPos, this.movementSpeed)) {
-					this.numSticks++;
-					s.tree.stick = null;
-					sticks.splice(i, 1);
-					document.getElementById(stickCountId).textContent = 'Sticks: ' + this.numSticks;
-
-					break;
-				} else {
-					flyingRocks.forEach(function(r) {
-						if(s.checkCollision(r.position(), r.figure.radius)) {
-							s.isAttached = false;
-						}
-					});
-				}
-			}
-		}
-
-		if(this.rocks.length < this.maxRocks) {
-			for(var i = 0; i < worldRocks.length; i++) {
-				var r = worldRocks[i];
-				var v = subtract(newPos, r.position());
-				var distSq = 0;
-				v.forEach(function(d) {
-					distSq += d*d;
-				});
-
-				if(distSq <= 1) {
-					this.rocks.push(r);
-					worldRocks.splice(i, 1);
-					document.getElementById(rockCountId).textContent = 'Rocks: ' + this.rocks.length;
-					break;
-				}
-			}
-		}
-
+        
 		// Adjust velocities and lean based on player's state
 		if (this.physical.isAirborne())
 		{
@@ -231,50 +170,6 @@ function Player(glCanvas, pos, speed) {
 		    footstepSound.pause();
 		}
         
-        //sounds
-        //fire
-        var vectorFromFire = subtract(this.position(), fire.position);
-        var distanceFromFire = vectorFromFire[0]*vectorFromFire[0] +
-                               vectorFromFire[1]*vectorFromFire[1] +
-                               vectorFromFire[2]*vectorFromFire[2];
-        if(distanceFromFire<=16 && fire.fireOn) {
-            fireSound.play();
-        }
-        else {
-            fireSound.pause();
-        }
-        
-        //wind
-        if(this.position()[1]>=maxIslandHeight-2) {
-            music.volume=0.01;
-            windSound.volume=0.5;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-10) {
-            music.volume=0.05;
-            windSound.volume=0.2;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-15) {
-            music.volume=0.07;
-            windSound.volume=0.1;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-20) {
-            music.volume=0.09;
-            windSound.volume=0.05;
-            windSound.play();
-        }
-        else if (this.position()[1]>=maxIslandHeight-25) {
-            music.volume=0.1;
-            windSound.volume=0.02;
-            windSound.play();
-        }
-        else {
-            music.volume=0.15;
-            windSound.pause();
-            windSound.currentTime=0;
-        }
         //waves
         if(this.position()[1]<1.5) {
             waveSound.volume=.2;
@@ -372,24 +267,6 @@ Player.prototype.handleKeyDown = function(e) {
 			this.isRunning = true;
             footstepSound.playbackRate=2.0;
 			break;
-		case 84: //T - add a stick to the fire if you are at camp
-			if(this.numSticks <= 0) {
-				break;
-			}
-
-			var x = this.position()[0];
-			var z = this.position()[2];
-            var fx = fire.position[0];
-            var fz = fire.position[2];
-			if(x > fx-1 && x < fx+1 && z > fz-1 && z <fz+1) {
-				fire.addStick();
-				this.numSticks--;
-				document.getElementById(stickCountId).textContent = 'Sticks: ' + this.numSticks;
-				var stickSound = new Audio("sounds/wood.wav");
-				stickSound.volume=0.2;
-				stickSound.play();
-            }
-			break;
 		case 32: // SPACE - jump
 			var pos = this.position();
 			if (pos[1] <= heightOf(pos[0], pos[2]) + 0.3)
@@ -438,33 +315,4 @@ Player.prototype.handleKeyUp = function(e) {
 
 Player.prototype.handleMouseDown = function() {
 	this.isCharging = true;
-}
-
-Player.prototype.handleMouseUp = function() {
-	if (this.rocks.length == 0)
-		return;
-	var rock = this.rocks.pop();
-
-	var yaw = radians(this.camera.yaw());
-	var pitch = radians(this.camera.pitch());
-	var objectWeight = rock.physical.radius();
-	objectWeight *= objectWeight;
-	var throwSpeed = this.armPower / objectWeight;
-
-	rock.figure.position = this.position();
-	rock.figure.position[0] += 0.5 * Math.cos(-yaw) * Math.cos(-pitch);
-	rock.figure.position[1] += 0.7;
-	rock.figure.position[2] += 0.5 * Math.sin(-yaw) * Math.cos(-pitch);
-
-	rock.physical.setVelocity(vec3(
-		throwSpeed * Math.sin(-yaw) * Math.cos(-pitch),
-		throwSpeed * Math.sin(-pitch),
-		throwSpeed * -Math.cos(-yaw) * Math.cos(-pitch)
-		));
-
-	this.armPower = 0.0;
-	this.isCharging = false;
-
-	Rock.getRocks().push(rock);
-	document.getElementById(rockCountId).textContent = 'Rocks: ' + this.rocks.length;
 }

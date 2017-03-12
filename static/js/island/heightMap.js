@@ -1,7 +1,6 @@
 "use strict"
 
-//var islandSize = 100;
-var islandSize = 100;
+var islandSize = 60;
 var tempSize = islandSize;
 var quarterSize = Math.trunc(islandSize*.5);
 var heights = [];
@@ -47,12 +46,14 @@ for(var x=0; x<islandSize+1; x++) {
 for(var x=1; x<quarterSize; x++) {
     for(var z=1; z<quarterSize; z++) {
         var rand=Math.random();
+        
         if(rand<=0.6) {
             heights[x][z]=ulAvg(x,z)+(steepness*Math.random());
         }
         else {
             heights[x][z]=ulAvg(x,z)-(steepness*Math.random());
         }
+        
     }
 }
 
@@ -60,6 +61,7 @@ for(var x=1; x<quarterSize; x++) {
 for(var x=islandSize-1; x>quarterSize; x--) {
     for(var z=islandSize-1; z>=quarterSize; z--) {
         var rand=Math.random();
+        
         if(rand<=0.55) {
             heights[x][z]=lrAvg(x,z)+(steepness*Math.random());
         }
@@ -73,14 +75,14 @@ for(var x=islandSize-1; x>quarterSize; x--) {
 for(var x=islandSize-21; x>quarterSize; x--) {
     for(var z=islandSize-21; z>=quarterSize; z--) {
         var rand=Math.random();
+        
         if(rand<=0.6) {
             heights[x][z]=lrAvg(x,z)+(1*Math.random());
         }
         else {
             heights[x][z]=findAvg(x,z)-(0*Math.random());
         }
+        
+
     }
 }
-
-
-

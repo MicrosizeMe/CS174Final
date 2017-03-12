@@ -20,7 +20,7 @@ function Sun(distFromOrigin) {
 	this.skyColor = this.daySky;
 
 	this.sun = new Sphere(new Material(vec4(1.0, 1.0, 0.0, 1.0), vec4(1.0, 1.0, 0.0, 1.0)), null, true, null);
-	this.sun.radius = 4;
+	this.sun.radius = 15;
 }
 
 Sun.prototype.draw = function(dt) {
