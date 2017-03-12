@@ -158,7 +158,7 @@ var glHelper = (function() {
 function handleOrientation(event) {
 	console.log(event);
 	// if (event.absolute) {
-	var alpha = event.alpha; // Corresponding to yaw
+	var alpha = -event.alpha; // Corresponding to yaw
 	var beta = (90 - Math.abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
 	var gamma = event.gamma; // Corresponding to pitch
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
