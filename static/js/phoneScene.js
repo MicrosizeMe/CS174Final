@@ -195,6 +195,7 @@ window.onload = function() {
     sun = new Sun(300);
 	shapes = [water, theIsland];
     
+    /*
     for (var x=1; x<islandSize; x+=2)
     {
         for(var z=1; z<islandSize; z+=2)
@@ -208,6 +209,22 @@ window.onload = function() {
                          vec3(x, heights[x][z] - 0.5, z),
                          kXZ, kY,
                          age);
+            }
+        }
+    }
+    */
+    
+    // Non-random tree placement
+    for (var x=1; x<islandSize; x+=2)
+    {
+        for(var z=1; z<islandSize; z+=2)
+        {
+            var kXZ = 2.5 * (0.5 + 1.5);
+            var kY = 4.0 * (0.5 * 0.3 +1.0);
+            if(heights[x][z]>0.21 && (z == 15 || z == 45) && (x < 49 || x > 51 || z < 29 || z > 31)) {
+                new Tree(
+                         vec3(x, heights[x][z] - 0.5, z),
+                         kXZ, kY);
             }
         }
     }

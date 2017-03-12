@@ -9,7 +9,7 @@ var Tree = (function() {
             
             var foliageTex = null;
             
-            function constructor(position, radius, height, age)
+            function constructor(position, radius, height)
             {
             if(!foliageTex) {
             foliageTex = new Texture.fromImageSrc('/img/foliage.png');
