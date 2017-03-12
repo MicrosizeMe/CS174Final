@@ -53,6 +53,8 @@ var rotateDegree = 1;
 var moveUnit = 0.075;
 var mouseSensitivity = 0.1;
 
+var mode = "laptop";
+
 // Helper to set shader attributes/uniforms
 var glHelper = (function() {
 	var helper = {};
@@ -221,9 +223,9 @@ window.onload = function() {
 			player.camera.yawBy(-x * mouseSensitivity);
 			player.camera.pitchBy(-y * mouseSensitivity);
 		}, 
-	null);
+		null);
 
-	// Attach our keyboard listener to the canvas
+		// Attach our keyboard listener to the canvas
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
         var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
         var playerHandleMouseDown = function(){ return player.handleMouseDown(); }

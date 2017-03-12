@@ -116,6 +116,43 @@ function Camera(glCanvas) {
 		}
 	}
 
+	// Positive angle corresponds to yawing left
+	// If the mode is "laptop", set the camera yaw to the 
+	// information from the serverIO.
+	// Otherwise, preform yaw calculations (?) and push them
+ 	// to the server.
+	this.setYaw = function(angle) {
+		if (mode == "laptop")
+			yaw = ioHandler.state.yaw;
+		else if (mode == "headset") {
+			yaw = angle;
+			ioHandler.state.yaw = yaw;
+		}
+	}
+
+	// Positive angle corresponds to pitching up
+	// Same logic as above.
+	this.setPitch = function(angle) {
+		if (mode == "laptop")
+			pitch = ioHandler.state.pitch;
+		else if (mode == "headset") {
+			pitch = angle;
+			ioHandler.state.pitch = pitch;
+		}
+	}
+
+	// Positive angle corresponds to rolling camera left
+	// (world rotates to the right)
+	// Same logic as above.
+	this.setRoll = function(angle) {
+		if (mode == "laptop")
+			roll = ioHandler.state.roll;
+		else if (mode == "headset") {
+			roll = angle;
+			ioHandler.state.roll = roll;
+		}
+	}
+
 	this.getProjViewMatrix = function() {
 		var hwRatio = canvas.height / canvas.width;
 		var fovy = 2 * Math.atan(hwRatio * Math.tan(radians(fovx) / 2));

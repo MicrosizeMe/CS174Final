@@ -53,6 +53,8 @@ var rotateDegree = 1;
 var moveUnit = 0.075;
 var mouseSensitivity = 0.1;
 
+var mode = "headset";
+
 // Helper to set shader attributes/uniforms
 var glHelper = (function() {
 	var helper = {};
@@ -217,13 +219,13 @@ window.onload = function() {
     
     setTimeout(function() {
         // Attach our keyboard and mouse listeners to the canvas
-		pointerLock(canvas, function(x, y) {
-			player.camera.yawBy(-x * mouseSensitivity);
-			player.camera.pitchBy(-y * mouseSensitivity);
-		}, 
-	null);
+		// pointerLock(canvas, function(x, y) {
+		// 	player.camera.yawBy(-x * mouseSensitivity);
+		// 	player.camera.pitchBy(-y * mouseSensitivity);
+		// }, 
+		// null);
 
-	// Attach our keyboard listener to the canvas
+		// Attach our keyboard listener to the canvas
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
         var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
         var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
@@ -232,9 +234,22 @@ window.onload = function() {
         window.addEventListener('keyup', playerHandleKeyUp);
     	window.addEventListener('mousedown', playerHandleMouseDown);
 		window.addEventListener('mouseup', playerHandleMouseUp);
+		window.addEventListener('deviceorientation', handleOrientation);
     }, 3000);
 
     resetStuff();
+}
+
+function handleOrientation(event) {
+	if (event.absolute) {
+		var alpha = event.alpha; // Corresponding to roll
+		var beta = event.beta; // Corresponding to yaw
+		var gamma = event.gamma; // Corresponding to pitch
+
+		player.camera.setYaw(beta);
+		player.camera.setPitch(gamma);
+		player.camera.setRoll(alpha);
+	}
 }
 
 function resetStuff() {

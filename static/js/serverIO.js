@@ -12,7 +12,6 @@ is sent to the server and camera angle data is received from it, or
 
 */
 
-var mode = "laptop";
 var IOHandler = function(mode) {
 	this.mode = mode;
 	this.state = {
