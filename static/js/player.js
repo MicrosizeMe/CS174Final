@@ -8,6 +8,7 @@ var waveSound = new Audio("/sounds/crisp_ocean_waves.mp3");
 waveSound.loop = true;
 waveSound.volume= .2;
 
+
 function Player(glCanvas, pos, speed) {
 	this.camera = new Camera(glCanvas);
 	this.camera.moveBy(pos[0], pos[1], pos[2]);
