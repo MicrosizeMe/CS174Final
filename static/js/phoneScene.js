@@ -163,11 +163,9 @@ function handleOrientation(event) {
 	var gamma = event.gamma; // Corresponding to pitch
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
-	// if (event.absolute) {
-		player.camera.setYaw(alpha);
-		player.camera.setRoll(beta);
-		player.camera.setPitch(gamma);
-	// }
+	player.camera.setYaw(alpha);
+	player.camera.setRoll(beta);
+	player.camera.setPitch(gamma);
 
 	$("#output").html("event.absolute: " + event.absolute + "\nalpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 	// }
