@@ -51,13 +51,13 @@ module.exports = function(app) {
 	app.post('/apiSendInfo', function(req, res) {
 		var clientID = req.body.clientID;
 		var state = req.body.state;
+		console.log(req.body);
 		if (clientID == null) {
 			return res.send({error: "Missing clientID!"});
 		}
 		if (state == null) {
 			return res.send({error: "Missing state!"});
 		}
-		console.log("Received: " + state);
 
 		// Update the appropriate state and return the other one.
 		if (clientID == "laptop") {
