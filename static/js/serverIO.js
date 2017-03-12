@@ -45,8 +45,6 @@ var IOHandler = function(mode) {
 			};
 		}
 
-		// $.post("/apiSendInfo", pushInfo, )
-
 		$.ajax({
 			method: "POST",
 			url: "/apiSendInfo",
