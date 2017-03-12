@@ -14,8 +14,6 @@ for(var x=quarterSize; x<islandSize; x++) {
     }
 }
 
-//clean up
-
 //smooth everything
 for(var x=1; x<islandSize; x++) {
     for(var z=1; z<islandSize; z++) {

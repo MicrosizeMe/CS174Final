@@ -33,7 +33,6 @@ function lrAvg(x, z) {
     return avg;
 }
 
-//init height map, all values to zero
 for(var x=0; x<islandSize+1; x++) {
     heights[x]=[];
     for(var z=0; z<islandSize+1; z++) {
@@ -42,32 +41,19 @@ for(var x=0; x<islandSize+1; x++) {
 }
 
 
-//ul forest
+// Upper Left
 for(var x=1; x<quarterSize; x++) {
     for(var z=1; z<quarterSize; z++) {
         var rand=Math.random();
-        
-        if(rand<=0.6) {
-            heights[x][z]=ulAvg(x,z)+(steepness*Math.random());
-        }
-        else {
-            heights[x][z]=ulAvg(x,z)-(steepness*Math.random());
-        }
-        
+        heights[x][z] = (rand <= 0.6) ? ulAvg(x,z)+(steepness*Math.random()) : ulAvg(x,z)-(steepness*Math.random());
     }
 }
 
-//lr rolling hills
+// Lower Right
 for(var x=islandSize-1; x>quarterSize; x--) {
     for(var z=islandSize-1; z>=quarterSize; z--) {
         var rand=Math.random();
-        
-        if(rand<=0.55) {
-            heights[x][z]=lrAvg(x,z)+(steepness*Math.random());
-        }
-        else {
-            heights[x][z]=lrAvg(x,z)-(steepness*Math.random());
-        }
+        heights[x][z] = (rand <= 0.55) ? lrAvg(x,z)+(steepness*Math.random()) : lrAvg(x,z)-(steepness*Math.random());
     }
 }
 
@@ -75,14 +61,6 @@ for(var x=islandSize-1; x>quarterSize; x--) {
 for(var x=islandSize-21; x>quarterSize; x--) {
     for(var z=islandSize-21; z>=quarterSize; z--) {
         var rand=Math.random();
-        
-        if(rand<=0.6) {
-            heights[x][z]=lrAvg(x,z)+(1*Math.random());
-        }
-        else {
-            heights[x][z]=findAvg(x,z)-(0*Math.random());
-        }
-        
-
+        heights[x][z] = (rand <= 0.6) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
     }
 }

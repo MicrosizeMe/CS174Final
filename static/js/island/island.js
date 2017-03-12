@@ -11,7 +11,6 @@ var Island = (function() {
     var sandtbo = null;
     var sandtanbo = null;
 
-
     var groundTexture;
     var groundMaterial = new Material(
         vec4(0.8, 0.9, 0.5, 1.0),
@@ -104,15 +103,13 @@ var Island = (function() {
         }
     }
     
-    // Method for sending vertex data to GPU a single time
+    // Send all vertex data to GPU
 	var initVertexData = function() {
 		if(!gl) {
 			throw "Unable to init Island data, gl not defined";
 		}
 
         groundTexture = new Texture.fromImageSrc('/img/grass.jpg');
-        //mtnTexture = new Texture.fromImageSrc('/img/rock.jpg');
-        //mtn2Texture = new Texture.fromImageSrc('/img/rock2.jpg');
         sandTexture = new Texture.fromImageSrc('/img/sand.jpg');
 
 		vbo = gl.createBuffer();
@@ -149,7 +146,6 @@ var Island = (function() {
 
 	};
               
-              //first four args are corners of square
               var islandConstructor = function() {
               
               if(!vbo || !nbo || !tbo) {
