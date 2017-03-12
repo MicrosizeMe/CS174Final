@@ -18,9 +18,9 @@ function Player(glCanvas, pos, speed) {
 	this.rightVelocity = 0.0;
 	this.movementSpeed = speed;
 
-	this.leanLeft = false;
-	this.leanRight = false;
-	this.leanAngle = 0.0;
+	// this.leanLeft = false;
+	// this.leanRight = false;
+	// this.leanAngle = 0.0;
 	
 	this.armPower = 0.0;
 	this.maxArmPower = 0.015;
@@ -93,37 +93,37 @@ function Player(glCanvas, pos, speed) {
 		{
 			if (this.isRunning && zV > 0)
 				zV *= 1.5;
-			// Adjust camera back to normal
-			if (this.leanAngle < 5.0 && this.leanAngle > -5.0)
-				this.leanAngle = 0.0;
-			else if (this.leanAngle != 0.0)
-				this.leanAngle += (this.leanAngle < 0.0) ? 5.0 : -5.0;
+			// // Adjust camera back to normal
+			// if (this.leanAngle < 5.0 && this.leanAngle > -5.0)
+			// 	this.leanAngle = 0.0;
+			// else if (this.leanAngle != 0.0)
+			// 	this.leanAngle += (this.leanAngle < 0.0) ? 5.0 : -5.0;
 		}
 		else
 		{
 			if (this.isRunning && zV > 0)
 			{
 				zV *= 1.5;
-				this.leanAngle = nextLeanAngle(this.leanAngle);
+				// this.leanAngle = nextLeanAngle(this.leanAngle);
 			}
 			else
 			{
-				if (this.leanLeft == this.leanRight)
-				{
-					// Adjust camera back to normal
-					if (this.leanAngle < 5.0 && this.leanAngle > -5.0)
-						this.leanAngle = 0.0;
-					else if (this.leanAngle != 0.0)
-						this.leanAngle += (this.leanAngle < 0.0) ? 5.0 : -5.0;
-				}
-				else if (this.leanLeft && this.leanAngle <= 45.0)
-					this.leanAngle += 5.0;
-				else if (this.leanRight && this.leanAngle >= -45.0)
-					this.leanAngle -= 5.0;
+				// if (this.leanLeft == this.leanRight)
+				// {
+				// 	// Adjust camera back to normal
+				// 	if (this.leanAngle < 5.0 && this.leanAngle > -5.0)
+				// 		this.leanAngle = 0.0;
+				// 	else if (this.leanAngle != 0.0)
+				// 		this.leanAngle += (this.leanAngle < 0.0) ? 5.0 : -5.0;
+				// }
+				// else if (this.leanLeft && this.leanAngle <= 45.0)
+				// 	this.leanAngle += 5.0;
+				// else if (this.leanRight && this.leanAngle >= -45.0)
+				// 	this.leanAngle -= 5.0;
 			}
 		}
 
-		this.camera.setLean(this.leanAngle);
+		// this.camera.setLean(this.leanAngle);
 		
 		if (this.testMove(xV, 0.0, 0.0))
 			this.camera.moveBy(xV, 0.0, 0.0);
@@ -210,7 +210,7 @@ function Player(glCanvas, pos, speed) {
 	var identMat = mat4();
 }
 
-function nextLeanAngle(curAngle)
+/*function nextLeanAngle(curAngle)
 {
 	if (!nextLeanAngle.isInitialized)
 		nextLeanAngle.isLeft = 1;
@@ -226,7 +226,7 @@ function nextLeanAngle(curAngle)
 	else
 		newAngle -= 1.0;
 	return newAngle;
-}
+}*/
 
 Player.prototype.draw = function(dt) {
 	// Using a 32x32x32 box seems to make the crosshairs appropriately small
@@ -257,12 +257,14 @@ Player.prototype.handleKeyDown = function(e) {
 		case 68: // D - right
 			this.rightVelocity = this.movementSpeed;
 			break;
+		/*
 		case 81: // Q - lean left
 			this.leanLeft = true;
 			break;
 		case 69: // E - lean right
 			this.leanRight = true;
 			break;
+		*/
 		case 16: // SHIFT - run
 			this.isRunning = true;
             footstepSound.playbackRate=2.0;
@@ -298,11 +300,11 @@ Player.prototype.handleKeyUp = function(e) {
 		case 68: // D - right
 			this.rightVelocity = 0.0;
 			break;
-		case 81: // Q - lean left
-			this.leanLeft = false;
-			break;
-		case 69: // E - lean right
-			this.leanRight = false;
+		// case 81: // Q - lean left
+		// 	this.leanLeft = false;
+		// 	break;
+		// case 69: // E - lean right
+		// 	this.leanRight = false;
 			break;
 		case 16: // SHIFT - run
 			this.isRunning = false;

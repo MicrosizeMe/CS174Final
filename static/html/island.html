@@ -3,34 +3,40 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Island Vacation</title>
-		<script type="text/javascript" src="../js/helper.js"></script>
-		<script type="text/javascript" src="../js/Common/MV.js"></script>
-		<script type="text/javascript" src="../js/Common/webgl-utils.js"></script>
-		<script type="text/javascript" src="../js/Common/initShaders.js"></script>
-        <script type="text/javascript" src="../js/island/heightMap.js"></script>
-        <script type="text/javascript" src="../js/island/bay.js"></script>
-		<script type="text/javascript" src="../js/camera.js"></script>
-		<script type="text/javascript" src="../js/map.js"></script>
-		<script type="text/javascript" src="../js/physical.js"></script>
-		<script type="text/javascript" src="../js/player.js"></script>
-		<script type="text/javascript" src="../js/texture.js"></script>
-		<script type="text/javascript" src="../js/shapes/shape.js"></script>
-		<script type="text/javascript" src="../js/shapes/cube.js"></script>
-		<script type="text/javascript" src="../js/shapes/multiTexCube.js"></script>
-		<script type="text/javascript" src="../js/shapes/sphere.js"></script>
-		<script type="text/javascript" src="../js/shapes/plane.js"></script>
-		<script type="text/javascript" src="../js/sky.js"></script>
-		<script type="text/javascript" src="../js/shapes/hexagonalPrism.js"></script>
-		<script type="text/javascript" src="../js/shapes/hexagonalPyramid.js"></script>
-		<script type="text/javascript" src="../js/objects/rock.js"></script>
-		<script type="text/javascript" src="../js/objects/tree.js"></script>
-		<script type="text/javascript" src="../js/objects/camprock.js"></script>
-		<script type="text/javascript" src="../js/objects/stick.js"></script>
-		<script type="text/javascript" src="../js/objects/campfire.js"></script>
-		<script type="text/javascript" src="../js/objects/paperTree.js"></script>
-		<script type="text/javascript" src="../js/island/island.js"></script>
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-		<script type="text/javascript" src="../js/scene.js"></script>
+		<script type="text/javascript" src="/js/helper.js"></script>
+		<script type="text/javascript" src="/js/Common/MV.js"></script>
+		<script type="text/javascript" src="/js/Common/webgl-utils.js"></script>
+		<script type="text/javascript" src="/js/Common/initShaders.js"></script>
+
+		<script type="text/javascript" src="/js/serverIO.js"></script>
+
+        <script type="text/javascript" src="/js/island/heightMap.js"></script>
+        <script type="text/javascript" src="/js/island/bay.js"></script>
+		<script type="text/javascript" src="/js/camera.js"></script>
+		<script type="text/javascript" src="/js/map.js"></script>
+		<script type="text/javascript" src="/js/physical.js"></script>
+		<script type="text/javascript" src="/js/player.js"></script>
+		<script type="text/javascript" src="/js/texture.js"></script>
+		<script type="text/javascript" src="/js/shapes/shape.js"></script>
+		<script type="text/javascript" src="/js/shapes/cube.js"></script>
+		<script type="text/javascript" src="/js/shapes/multiTexCube.js"></script>
+		<script type="text/javascript" src="/js/shapes/sphere.js"></script>
+		<script type="text/javascript" src="/js/shapes/plane.js"></script>
+		<script type="text/javascript" src="/js/sky.js"></script>
+		<script type="text/javascript" src="/js/shapes/hexagonalPrism.js"></script>
+		<script type="text/javascript" src="/js/shapes/hexagonalPyramid.js"></script>
+		<script type="text/javascript" src="/js/objects/rock.js"></script>
+		<script type="text/javascript" src="/js/objects/tree.js"></script>
+		<script type="text/javascript" src="/js/objects/camprock.js"></script>
+		<script type="text/javascript" src="/js/objects/stick.js"></script>
+		<script type="text/javascript" src="/js/objects/campfire.js"></script>
+		<script type="text/javascript" src="/js/objects/paperTree.js"></script>
+		<script type="text/javascript" src="/js/island/island.js"></script>
+
+		<script type="text/javascript" src="/js/scene.js"></script>
 
 		<script id="shader-vertex" type="x-shader/x-vertex">
 			precision mediump float;

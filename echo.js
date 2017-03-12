@@ -18,10 +18,10 @@ var laptopState = {
 	posX: null,
 	posY: null,
 	posZ: null,
-	wPressed: false,
-	aPressed: false,
-	sPressed: false,
-	dPressed: false // known bug: this should default to true
+	// wPressed: false,
+	// aPressed: false,
+	// sPressed: false,
+	// dPressed: false // known bug: this should default to true
 };
 
 // Same as above, but reversed.
