@@ -160,14 +160,14 @@ function handleOrientation(event) {
 	// if (event.absolute) {
 	var alpha = -event.alpha; // Corresponding to yaw
 	//var beta = (90 - Math.abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
-	var beta = event.beta;
+	var beta = event.beta;a
 	//var gamma = event.gamma - 90; // Corresponding to pitch
 	var gamma = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1)
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
 	player.camera.setYaw(alpha);
 	//player.camera.setRoll(beta);
-	player.camera.setPitch(gamma);
+	//player.camera.setPitch(gamma);
 
 	$("#output").html("event.absolute: " + event.absolute + "\nalpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 	//$("#output").html("\nreal gamma: " + event.gamma);
