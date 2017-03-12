@@ -23,6 +23,8 @@ var IOHandler = function(mode) {
 		roll: 0,
 	};
 
+	var scope = this;
+
 	// Poll information from the server and push information 
 	// as relevant.
 	this.updateInfo = function() {
@@ -31,17 +33,17 @@ var IOHandler = function(mode) {
 		if (mode == "laptop") {
 			pushInfo.clientID = "laptop";
 			pushInfo.state = {
-				posX: this.state.posX,
-				posY: this.state.posY,
-				posZ: this.state.posZ
+				posX: scope.state.posX,
+				posY: scope.state.posY,
+				posZ: scope.state.posZ
 			};
 		}
 		else if (mode == "headset") {
 			pushInfo.clientID = "headset";
 			pushInfo.state = {
-				yaw: this.state.yaw,
-				pitch: this.state.pitch,
-				roll: this.state.roll
+				yaw: scope.state.yaw,
+				pitch: scope.state.pitch,
+				roll: scope.state.roll
 			};
 		}
 
@@ -54,28 +56,28 @@ var IOHandler = function(mode) {
 			data: JSON.stringify(pushInfo)
 		}).done(function(data) {
 			if (mode == "laptop") {
-				this.state.yaw = data.yaw;
-				this.state.pitch = data.pitch;
-				this.state.roll = data.roll;
+				scope.state.yaw = data.yaw;
+				scope.state.pitch = data.pitch;
+				scope.state.roll = data.roll;
 			}
 			else if (mode == "headset") {
-				this.state.posX = data.posX;
-				this.state.posY = data.posY;
-				this.state.posZ = data.posZ;
+				scope.state.posX = data.posX;
+				scope.state.posY = data.posY;
+				scope.state.posZ = data.posZ;
 			}
 		});
 	};
 
 	this.setPos = function(x, y, z) {
-		this.state.posX = posX;
-		this.state.posY = posY;
-		this.state.posZ = posZ;
+		scope.state.posX = posX;
+		scope.state.posY = posY;
+		scope.state.posZ = posZ;
 	}
 
 	this.setCamera = function(yaw, pitch, roll) {
-		this.state.yaw = yaw;
-		this.state.pitch = pitch;
-		this.state.roll = roll;
+		scope.state.yaw = yaw;
+		scope.state.pitch = pitch;
+		scope.state.roll = roll;
 	}
 }; 
 
