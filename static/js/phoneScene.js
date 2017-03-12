@@ -166,9 +166,9 @@ function handleOrientation(event) {
 	var roll = event.beta;
 	console.log("alpha: " + alpha + "\nbeta: " + beta + "\ngamma: " + gamma);
 
-	player.camera.setYaw(alpha);
-	//player.camera.setRoll(beta);
-	//player.camera.setPitch(gamma);
+	player.camera.setYaw(yaw);
+	//player.camera.setRoll(roll);
+	//player.camera.setPitch(pitch);
 
 	$("#output").html("event.absolute: " + Math.trunc(event.absolute) + "\nyaw: " + Math.trunc(yaw) + "\nroll: " + Math.trunc(roll) + "\npitch: " + Math.trunc(pitch)
 		 + "\nevent alpha: " + Math.trunc(event.alpha) + "\n event beta: " + Math.trunc(event.beta) + "\n event gamma: " + Math.trunc(event.gamma));
