@@ -28,10 +28,10 @@ var uniformEnableBumpingF   = 'enableBumpingF';
 var shapes = [];
 var sun;
 
-var gl;	     // WebGL object for the canvas
-var canvas;  // HTML canvas element that we are drawing in
-var program; // The WebGL linked program
-var camera;  // Camera used for navigating the scene
+var gl;
+var canvas;
+var program;
+var camera;
 var player;
 var resetCount = 0;
 

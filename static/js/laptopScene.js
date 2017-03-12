@@ -22,31 +22,22 @@ var uniformUniformLighting = 'uniformLighting';
 var uniformEnableBumpingV   = 'enableBumpingV';
 var uniformEnableBumpingF   = 'enableBumpingF';
 
-var stickCountId = 'stickCount';
-var rockCountId = 'rockCount';
+//var stickCountId = 'stickCount';
+//var rockCountId = 'rockCount';
 
 var shapes = [];
-var campRocks = [];
-var fire;
-var bumpCube;
 var sun;
-var totalRocks = 5;
 
-var gl;	     // WebGL object for the canvas
-var canvas;  // HTML canvas element that we are drawing in
-var program; // The WebGL linked program
-var camera;  // Camera used for navigating the scene
+var gl;
+var canvas;
+var program;
+var camera;
 var player;
-//var pig;
 var resetCount = 0;
 
 var timer = new Timer();
 
 var cutscene = false;
-
-var music = new Audio("sounds/islandMusic2.mp3");
-music.loop = true;
-var isNighttime = false;
 
 // Steps in for moving camera
 var rotateDegree = 1;
@@ -55,7 +46,7 @@ var mouseSensitivity = 0.1;
 
 var mode = "laptop";
 
-// Helper to set shader attributes/uniforms
+// Set the shader attributes
 var glHelper = (function() {
 	var helper = {};
 	function setAttrib(name, vbo) {
@@ -121,8 +112,6 @@ var glHelper = (function() {
 		gl.uniform1i(loc, (arg ? 1 : 0));
 	}
 
-	//enable lighting will only work as expected when the object has a texture
-	//it is intended only for the fire so that it is always full lit.
 	helper.enableLighting = function(arg) {
 		var loc = gl.getUniformLocation(program, uniformEnableLighting);
 		gl.uniform1i(loc, (arg ? 1 : 0));
@@ -155,7 +144,7 @@ var glHelper = (function() {
 	return helper;
 })();
 
-// Init function to start GL and draw everything
+// Initialization function
 window.onload = function() {
 	canvas = document.getElementById(canvasId);
 	gl = WebGLUtils.setupWebGL(canvas);
@@ -166,7 +155,7 @@ window.onload = function() {
 		throw msg;
 	}
 
-	// Compile and load the gl program
+	// Load the program
 	try {
 		program = initShaders(gl, vertexSourceId, fragmentSourceId);
 		gl.useProgram(program);
@@ -176,7 +165,6 @@ window.onload = function() {
 		throw e;
 	}
 
-	// Initialize the player
 	player = new Player(canvas, vec3(quarterSize, 0, -quarterSize), moveUnit); // pos parameter = player's initial position.
     
     var waterMaterial = new Material(
@@ -221,19 +209,8 @@ window.onload = function() {
 	}
 
 	refreshOrientation();
-    // setTimeout(function() {
-    //     cutscene=true;
-    // }, 2000);
-    
 
     setTimeout(function() {
-        // Attach our keyboard and mouse listeners to the canvas
-		// pointerLock(canvas, function(x, y) {
-		// 	player.camera.yawBy(-x * mouseSensitivity);
-		// 	player.camera.pitchBy(-y * mouseSensitivity);
-		// }, 
-		// null);
-
 		// Attach our keyboard listener to the canvas
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
         var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
@@ -256,19 +233,6 @@ function resetStuff() {
 
 // Draws the data in the vertex buffer on the canvas repeatedly
 function draw() {
-    if(sun.angle>180 && sun.angle<360) {
-        isNighttime=true;
-    }
-    else {
-        isNighttime=false;
-    }
-    if(isNighttime && musicOn) {
-        //music.currentTime=0;
-        music.play();
-    }
-    else {
-        music.pause();
-    }
 
     resetCount++;
     if(resetCount > 1000) {
@@ -276,8 +240,6 @@ function draw() {
 	    resetStuff();
     }
 
-	//var skyColor = sun.skyColor;
-	//gl.clearColor(skyColor[0], skyColor[1], skyColor[2], 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.enable(gl.DEPTH_TEST);
 
@@ -303,8 +265,6 @@ function draw() {
     
 	player.draw(); // This will draw the crosshairs and arms on the screen
 	glHelper.setLightMaterial(sun.lightMaterial);
-	//light is reset here, position is taken care of
-	//by sun.draw which is the first shape drawn
 
 	player.draw();
     if(cutscene) {
