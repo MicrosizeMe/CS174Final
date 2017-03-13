@@ -33,7 +33,6 @@ var Physical = (function()
 		{
 			var vel = magnitude(m_velocity);
 			return (vel > 0.02 || vel < -0.02);
-			//return m_velocity[0] != 0 || m_velocity[1] != 0 || m_velocity[2] != 0;
 		}
 
 		this.physics = function(startPosition, attemptPosition)
@@ -54,7 +53,7 @@ var Physical = (function()
 			var finalY = y2 + m_velocity[1];
 			var finalZ = z2 + m_velocity[2];
 
-			// Terrain collision
+			// Collision detection for the ground
 			var groundHeight = heightOf(x2, z2);
 			if (y2 > groundHeight + m_radius || m_velocity[1] > 0.0)
 			{

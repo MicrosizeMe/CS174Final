@@ -1,14 +1,11 @@
 var Tree = (function() {
             var trees = [];
-            //var sticks = [];
-            
             var trunkMaterial = new Material(
                                              vec4(0.627, 0.322, 0.176, 1.0),
                                              vec4(0.627, 0.322, 0.176, 1.0)
                                              );
             
             var foliageTex = null;
-            
             function constructor(position, radius, height)
             {
             if(!foliageTex) {
@@ -19,7 +16,6 @@ var Tree = (function() {
                                                vec4(0.8, 1.0, 1.0, 1.0),
                                                vec4(0.3, 0.3, 0.3, 1.0)
                                                );
-            
             this.position = position;
             this.radius   = radius;
             this.height   = height;
@@ -28,20 +24,12 @@ var Tree = (function() {
             this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
             this.foliageRound.radius = 2;
             
-            //this.stick = null;
-            
             trees.push(this);
             }
             
             constructor.getTrees = function() {
             return trees;
             }
-            
-            /*
-            constructor.getSticks = function() {
-            return sticks;
-            }
-            */
             
             constructor.drawTrees = function(dt) {
             var identMat = mat4();
@@ -89,35 +77,4 @@ Tree.prototype.draw = function(dt, mat) {
     
     this.trunk.draw(dt, mat);
     this.foliageRound.draw(dt, mat);
-    
-    /*
-    if(this.stick) {
-        this.stick.draw(dt, mat);
-    }
-    */
 }
-/*
-Tree.prototype.addStick = function() {
-    if(this.stick) {
-        return;
-    }
-    
-    // Pick a random 45 degree offset around the tree
-    var rand = Math.floor(Math.random() * 10) - 1;
-    var theta = rand * 45;
-    var yaw = rand * -60;
-    var rad = radians(theta);
-    var sin = Math.sin(theta);
-    var cos = Math.cos(theta);
-    
-    var y = Math.abs(Math.random() * this.height * 2);
-    var radius = (this.radius * 0.15) + 0.15;
-    var pos = vec3(radius * cos, y, radius * sin);
-    
-    var roll = Math.floor((Math.random() * 90) - 45);
-    this.stick = new Stick(add(this.position, pos), yaw, 0, roll);
-    this.stick.tree = this;
-    
-    Tree.getSticks().push(this.stick);
-}
-*/
