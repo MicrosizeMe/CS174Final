@@ -8,7 +8,7 @@ var plane = function(a, b, c)
 
 var heightOf = function(xPos, zPos)
 {
-    // EDIT when we add varying elevation
+    // Edit when we add varying elevation
     var truncX = Math.trunc(xPos);
     var truncZ = Math.trunc(zPos);
     
@@ -68,8 +68,7 @@ var Texture = (function() {
                throw "Unable to init texture data, gl not defined";
                }
                
-               // Make sure textures are properly flipped
-               // BUT make sure this runs only once, otherwise it would toggle
+               // Make sure textures are properly flipped.
                gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
                
                defaultTexture = textureFromData(

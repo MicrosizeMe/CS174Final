@@ -1,11 +1,14 @@
 "use strict"
 
 var Island = (function() {
+    // Vertex, normals, textures, and tangents for grass
     var vbo = null;
     var nbo = null;
     var tbo = null;
 	var tanbo = null;
-
+              
+              
+    // Vertex, normals, textures, and tangents for sand
     var sandvbo = null;
     var sandnbo = null;
     var sandtbo = null;
@@ -146,6 +149,8 @@ var Island = (function() {
 
 	};
               
+              // Set up grass and sand textures with the image files and shapes.
+              
               var islandConstructor = function() {
               
               if(!vbo || !nbo || !tbo) {
@@ -164,6 +169,7 @@ var Island = (function() {
 inheritPrototype(Island, Shape);
 
 Island.prototype.draw = function(dt, mat) {
+    // Draw the grass and the sand
     this.grass.draw(dt, mat);
     this.sand.draw(dt, mat);
 }
