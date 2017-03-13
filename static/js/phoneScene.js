@@ -1,6 +1,6 @@
 "use strict";
 
-var canvasId         = 'gl-canvas';
+var canvasId1         = 'gl-canvas';
 var vertexSourceId   = 'shader-vertex';
 var fragmentSourceId = 'shader-fragment';
 
@@ -142,7 +142,9 @@ var glHelper = (function() {
 })();
 
 function handleOrientation(event) {
-	console.log(event);
+	// console.log(event);
+	// if (event.absolute) {
+	//var gamma = event.gamma - 90; // Corresponding to pitch
 	var pitch = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1);
 	var yaw = (pitch >= 0) ? (-event.alpha + 180) : -event.alpha; // Corresponding to yaw
 	var roll = (pitch >= 0) ? event.beta : -(event.beta + 180);
@@ -155,9 +157,16 @@ function handleOrientation(event) {
 		 + "\nevent alpha: " + Math.trunc(event.alpha) + "\n event beta: " + Math.trunc(event.beta) + "\n event gamma: " + Math.trunc(event.gamma));
 }
 
+function handleResize() {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	gl.viewport(0, 0, canvas.width, canvas.height);
+}
+
+
 // Init function to start GL and draw everything
 window.onload = function() {
-	canvas = document.getElementById(canvasId);
+	canvas = document.getElementById(canvasId1);
 	gl = WebGLUtils.setupWebGL(canvas);
 
 	if(!gl) {
@@ -175,6 +184,7 @@ window.onload = function() {
 		alert(e);
 		throw e;
 	}
+	handleResize();
 
 	// Initialize the player
 	player = new Player(canvas, vec3(quarterSize, 0, -quarterSize), moveUnit); // pos parameter = player's initial position.
@@ -208,18 +218,24 @@ window.onload = function() {
         }
     }
     
+    gl.enable(gl.SCISSOR_TEST);
+	gl.enable(gl.DEPTH_TEST);
+	glHelper.uniformLighting(true);
+	glHelper.enableLighting(true);
+	glHelper.enableBumping(false);
 	draw();
     
     setTimeout(function() {
-        var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
-        var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
-        var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
-		var playerHandleMouseUp = function(){ return player.handleMouseUp(); }
-        window.addEventListener('keydown', playerHandleKeyDown);
-        window.addEventListener('keyup', playerHandleKeyUp);
-    	window.addEventListener('mousedown', playerHandleMouseDown);
-		window.addEventListener('mouseup', playerHandleMouseUp);
+  //       var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
+  //       var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
+  //       var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
+		// var playerHandleMouseUp = function(){ return player.handleMouseUp(); }
+  //       window.addEventListener('keydown', playerHandleKeyDown);
+  //       window.addEventListener('keyup', playerHandleKeyUp);
+  //   	window.addEventListener('mousedown', playerHandleMouseDown);
+		// window.addEventListener('mouseup', playerHandleMouseUp);
 		window.addEventListener('deviceorientation', handleOrientation);
+		window.onresize = handleResize;
     }, 3000);
 
     resetStuff();
@@ -232,44 +248,44 @@ function resetStuff() {
 
 // Draws the data in the vertex buffer on the canvas repeatedly
 function draw() {
+	for (var i = 0; i < 2; i++) {
+		gl.scissor((canvas.width/2)*i, 0, canvas.width / 2, canvas.height);
+		gl.viewport((canvas.width/2)*i, 0, canvas.width / 2, canvas.height);
 
-    resetCount++;
-    if(resetCount > 1000) {
-	    resetCount = 0;
-	    resetStuff();
-    }
+	    resetCount++;
+	    if(resetCount > 1000) {
+		    resetCount = 0;
+		    resetStuff();
+	    }
 
-	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-	gl.enable(gl.DEPTH_TEST);
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-	glHelper.uniformLighting(true);
-	glHelper.enableLighting(true);
-	glHelper.enableBumping(false);
-	player.move(); // This will set our camera in the world
-	glHelper.setProjViewMatrix(player.camera.getProjViewMatrix());
+		player.move(); // This will set our camera in the world
+		glHelper.setProjViewMatrix(player.camera.getProjViewMatrix());
 
-	var identMat = mat4();
-	var dt = timer.getElapsedTime();
+		var identMat = mat4();
+		var dt = timer.getElapsedTime();
 
-	sun.draw(dt);  // This will set our light position and material
+		sun.draw(dt);  // This will set our light position and material
 
-	dt += timer.getElapsedTime();
-	Tree.drawTrees(dt);
-	
-
-	shapes.forEach(function(e) {
 		dt += timer.getElapsedTime();
-		e.draw(dt, identMat);
-	});
-    
-	player.draw(); // Draw player on the phone screen
-	glHelper.setLightMaterial(sun.lightMaterial);
+		Tree.drawTrees(dt);
+		
 
-	player.draw();
-    if(cutscene) {
-        if(player.camera.getRoll()!=0) {
-            player.camera.rollBy(1);
-        }
-    }
+		shapes.forEach(function(e) {
+			dt += timer.getElapsedTime();
+			e.draw(dt, identMat);
+		});
+	    
+		player.draw(); // Draw player on the phone screen
+		glHelper.setLightMaterial(sun.lightMaterial);
+
+		player.draw();
+	    if(cutscene) {
+	        if(player.camera.getRoll()!=0) {
+	            player.camera.rollBy(1);
+	        }
+	    }
+	}
 	window.requestAnimFrame(draw);
 }
