@@ -154,7 +154,9 @@ function Camera(glCanvas) {
 	}
 
 	this.getProjViewMatrix = function() {
-		var hwRatio = canvas.height / canvas.width;
+		var scissorBox = gl.getParameter(gl.SCISSOR_BOX);
+		// height is box param 3, width is box param 2
+		var hwRatio = scissorBox[3] / scissorBox[2];
 		var fovy = 2 * Math.atan(hwRatio * Math.tan(radians(fovx) / 2));
 		var fovyDegree = fovy * 180 / Math.PI;
 		var proj = perspective(fovyDegree, canvas.width / canvas.height, .05, 500);

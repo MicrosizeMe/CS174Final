@@ -1,6 +1,6 @@
 "use strict";
 
-var canvasId1         = 'gl-canvas1';
+var canvasId1         = 'gl-canvas';
 var vertexSourceId   = 'shader-vertex';
 var fragmentSourceId = 'shader-fragment';
 
@@ -142,7 +142,7 @@ var glHelper = (function() {
 })();
 
 function handleOrientation(event) {
-	console.log(event);
+	// console.log(event);
 	// if (event.absolute) {
 	//var gamma = event.gamma - 90; // Corresponding to pitch
 	var pitch = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1);
@@ -162,9 +162,10 @@ function handleOrientation(event) {
 }
 
 function handleResize() {
-	canvas.width = window.innerWidth/2;
+	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	gl.viewport(0, 0, canvas.width, canvas.height);
+	gl.scissor(0, 0, canvas.width / 2, canvas.height);
 }
 
 
@@ -251,14 +252,14 @@ window.onload = function() {
 	draw();
     
     setTimeout(function() {
-        var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
-        var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
-        var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
-		var playerHandleMouseUp = function(){ return player.handleMouseUp(); }
-        window.addEventListener('keydown', playerHandleKeyDown);
-        window.addEventListener('keyup', playerHandleKeyUp);
-    	window.addEventListener('mousedown', playerHandleMouseDown);
-		window.addEventListener('mouseup', playerHandleMouseUp);
+  //       var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
+  //       var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
+  //       var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
+		// var playerHandleMouseUp = function(){ return player.handleMouseUp(); }
+  //       window.addEventListener('keydown', playerHandleKeyDown);
+  //       window.addEventListener('keyup', playerHandleKeyUp);
+  //   	window.addEventListener('mousedown', playerHandleMouseDown);
+		// window.addEventListener('mouseup', playerHandleMouseUp);
 		window.addEventListener('deviceorientation', handleOrientation);
 		window.onresize = handleResize;
     }, 3000);
@@ -282,6 +283,7 @@ function draw() {
 
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.enable(gl.DEPTH_TEST);
+	gl.enable(gl.SCISSOR_TEST);
 
 	glHelper.uniformLighting(true);
 	glHelper.enableLighting(true);
