@@ -54,12 +54,14 @@ for(var x = islandSize - 1; x > quarterSize; x--) {
     }
 }
 
+// Upper Right
 for(var x = islandSize - 21; x > quarterSize; x--) {
     for(var z = islandSize - 21; z >= quarterSize; z--) {
         heights[x][z] = (x % 4 != 0) ? lrAvg(x,z)+(1*Math.random()) : findAvg(x,z)-(0*Math.random());
     }
 }
 
+// Lower Left
 for(var x = quarterSize; x < islandSize; x++) {
     for(var z = quarterSize; z > 0; z--) {
         heights[x][z] = (x % 2 == 0) ? llAvg(x,z)+(steepness*Math.random()) : llAvg(x,z)-(steepness*Math.random());
