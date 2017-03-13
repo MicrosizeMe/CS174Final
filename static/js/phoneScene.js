@@ -143,12 +143,8 @@ var glHelper = (function() {
 
 function handleOrientation(event) {
 	console.log(event);
-	// if (event.absolute) {
-	//var gamma = event.gamma - 90; // Corresponding to pitch
 	var pitch = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1);
-	// var yaw = -event.alpha; // Corresponding to yaw
 	var yaw = (pitch >= 0) ? (-event.alpha + 180) : -event.alpha; // Corresponding to yaw
-	//var beta = (90 - Math.abs(event.beta)) * ((event.beta > 0) ? 1 : -1); // Corresponding to roll
 	var roll = (pitch >= 0) ? event.beta : -(event.beta + 180);
 	
 	player.camera.setYaw(yaw);
@@ -157,8 +153,6 @@ function handleOrientation(event) {
 
 	$("#output").html("event.absolute: " + Math.trunc(event.absolute) + "\nyaw: " + Math.trunc(yaw) + "\nroll: " + Math.trunc(roll) + "\npitch: " + Math.trunc(pitch)
 		 + "\nevent alpha: " + Math.trunc(event.alpha) + "\n event beta: " + Math.trunc(event.beta) + "\n event gamma: " + Math.trunc(event.gamma));
-	//$("#output").html("\nreal gamma: " + event.gamma);
-	// }
 }
 
 // Init function to start GL and draw everything
