@@ -72,7 +72,7 @@ function Player(glCanvas, pos, speed) {
 			}
 		}
         
-		// Adjust velocities and lean based on player's state
+		// Adjust velocities based on player's state
 		if (this.physical.isAirborne())
 		{
 			if (this.isRunning && zV > 0)
