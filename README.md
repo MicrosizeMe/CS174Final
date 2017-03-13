@@ -1,5 +1,8 @@
 # CS174Final
 
+Anbo Wei
+Vamsi Mokkapati
+Sabrina Chiang
 
 WHAT THIS IS
 
@@ -34,3 +37,6 @@ To close the server, simply to control + c.
 
 The code is also being hosted on my webserver at 192.241.227.179:9000/html/laptop.html and 
 192.241.227.179:9000/html/phone.html, respectively, if none of that seems interesting.
+
+
+Advance topics are collision and physics (via jumping)
