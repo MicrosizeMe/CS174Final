@@ -39,7 +39,6 @@ Sun.prototype.draw = function(dt) {
 
 	glHelper.setLightPosition(vec3(posCos, posSin, 0));
 
-	// The sun and the moon get lit using full day light no matter what
 	this.lightMaterial = this.daylight;
 	glHelper.setLightMaterial(this.lightMaterial);
     

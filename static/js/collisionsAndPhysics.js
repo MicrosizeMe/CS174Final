@@ -79,7 +79,7 @@ var Physical = (function()
 					m_velocity[1] = 0.0;
 				}
 
-				// Friction
+				// Friction detection
 				m_velocity[0] *= (1.0 - m_friction);
 				m_velocity[2] *= (1.0 - m_friction);
 

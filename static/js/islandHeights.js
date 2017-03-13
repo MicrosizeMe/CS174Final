@@ -5,6 +5,10 @@ var quarterSize = Math.trunc(islandSize*.5);
 var heights = [];
 var steepness = .3;
 
+// Averaging functions to ensure smooth textures. The following averages
+// are for the upper left, upper right, lower left, and lower right portions
+// of the island.
+
 function findAvg(x, z) {
     var avg = (heights[x-1][z-1] + heights[x  ][z-1] + heights[x+1][z-1] +
                heights[x-1][z  ] + heights[x  ][z  ] + heights[x+1][z  ] +

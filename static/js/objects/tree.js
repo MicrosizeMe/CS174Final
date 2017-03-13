@@ -8,6 +8,8 @@ var Tree = (function() {
             var foliageTex = null;
             function constructor(position, radius, height)
             {
+            
+            // Apply the foliage image texture
             if(!foliageTex) {
             foliageTex = new Texture.fromImageSrc('/img/foliage.png');
             }
@@ -20,6 +22,8 @@ var Tree = (function() {
             this.radius   = radius;
             this.height   = height;
             
+            
+            // The tree trunks are hexagonal prisms, while the tree leaves are spherical.
             this.trunk         = new HexagonalPrism(trunkMaterial, null, null);
             this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
             this.foliageRound.radius = 2;
@@ -54,7 +58,7 @@ Tree.prototype.checkCollision = function(pos, otherRadius) {
     
     var dist = subtract(pos, this.trunk.position);
     
-    // Ignore y-component, approximate using cylinder
+    // Ignore y-component, and approximate using a cylinder shape
     var distSq = (dist[0] * dist[0]) + (dist[2] * dist[2]);
     var radiusSq = otherRadius + treeRadius;
     radiusSq *= radiusSq;
