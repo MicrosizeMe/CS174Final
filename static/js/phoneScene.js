@@ -144,21 +144,21 @@ var glHelper = (function() {
 })();
 
 function handleOrientation(event) {
-	// console.log(event);
-	// if (event.absolute) {
-	//var gamma = event.gamma - 90; // Corresponding to pitch
-	var pitch = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1);
-	var yaw = (pitch >= 0) ? (-event.alpha + 180) : -event.alpha; // Corresponding to yaw
-	var roll = (pitch >= 0) ? event.beta : -(event.beta + 180);
+	var pitch = -(90 - Math.abs(event.gamma)) * ((event.gamma > 0) ? 1 : -1);	// Gamma corresponds to pitch
+	var yaw = (pitch >= 0) ? (-event.alpha + 180) : -event.alpha; 				// Corresponding to yaw
+	var roll = (pitch >= 0) ? event.beta : -(event.beta + 180);					// Corresponding to roll
 	
 	player.camera.setYaw(yaw);
 	player.camera.setRoll(roll);
 	player.camera.setPitch(pitch);
 
+	// Outputs gamma/alpha/beta and calculated yaw/pitch/roll to show response to phone rotation
 	$("#output").html("event.absolute: " + Math.trunc(event.absolute) + "\nyaw: " + Math.trunc(yaw) + "\nroll: " + Math.trunc(roll) + "\npitch: " + Math.trunc(pitch)
 		 + "\nevent alpha: " + Math.trunc(event.alpha) + "\n event beta: " + Math.trunc(event.beta) + "\n event gamma: " + Math.trunc(event.gamma));
+
 }
 
+// Resize canvas according to phone dimensions/resolution
 function handleResize() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -191,17 +191,21 @@ window.onload = function() {
 	// Initialize the player
 	player = new Player(canvas, vec3(quarterSize, 0, -quarterSize), moveUnit); // pos parameter = player's initial position.
     
+    // Material for water (blue color)
     var waterMaterial = new Material(
         vec4(0.117, 0.5647, 1, 1),
         vec4(0.117, 0.5647, 1, 1)
     );
     
+    // Create massive cube for water and place
 	var water = new Cube(waterMaterial, null, true, false);
 	water.position = vec3(islandSize * 0.66, 0.0, islandSize * 0.66);
 	water.scale = vec3(islandSize*2, 0.1, islandSize*2);
     
+    // Create the island
     var theIsland = new Island();
 
+    // Create a light source, placed in the sky 
     sun = new Sun(300);
 	shapes = [water, theIsland];
     
@@ -220,6 +224,7 @@ window.onload = function() {
         }
     }
     
+    // Scissoring to split screen, enable depth buffer
     gl.enable(gl.SCISSOR_TEST);
 	gl.enable(gl.DEPTH_TEST);
 	glHelper.uniformLighting(true);
