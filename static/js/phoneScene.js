@@ -43,7 +43,7 @@ var mouseSensitivity = 0.1;
 
 var mode = "headset";
 
-var focalLength = 0.5;
+var focalLength = 0.2;
 
 // Set the shader attributes
 var glHelper = (function() {
