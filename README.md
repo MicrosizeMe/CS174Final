@@ -1,14 +1,20 @@
 # CS174Final
 
-Anbo Wei
-Vamsi Mokkapati
-Sabrina Chiang
+Anbo Wei 604480880
+Vamsi Mokkapati 404464206
+Sabrina Chiang 204411921
 
 WHAT THIS IS
 
 This repository is the list of all files needed in order to run both the phone and desktop version
 of this vr island simulator. It works off of a node.js server used to serve static files. Most of
 the code works on the front end.
+
+NO BUT REALLY WHAT IS GOING ON
+
+You just walk around an island. There is calming ocean sounds and not calming footsteps. Feel free
+to run around using shift, or jump using space. Enjoy some trees. Enjoy your solitude.
+
 
 HOW DO YOU RUN THIS
 
@@ -38,5 +44,13 @@ To close the server, simply to control + c.
 The code is also being hosted on my webserver at 192.241.227.179:9000/html/laptop.html and 
 192.241.227.179:9000/html/phone.html, respectively, if none of that seems interesting.
 
+BUT WAIT I DON'T HAVE GOOGLE CARDBOARD OR A VR HEADSET
 
-Advance topics are collision and physics (via jumping)
+okay don't enjoy an island fine then 
+
+But the code all still works if you go to the website on your phone.
+You just see a split screen, one for each eye. 
+
+
+Advance topics are collision detection (with trees and the water) (don't drown yourself)
+ and physics (via jumping).
