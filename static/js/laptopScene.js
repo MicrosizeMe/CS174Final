@@ -172,7 +172,7 @@ window.onload = function() {
 	var water = new Cube(waterMaterial, null, true, false);
 	water.position = vec3(islandSize * 0.66, 0.0, islandSize * 0.66);
     //water.position = vec3(islandSize * 1, 0.0, islandSize * 1);
-	water.scale = vec3(islandSize*20, 0.1, islandSize*20);
+	water.scale = vec3(islandSize*1.5, 0.1, islandSize*1.5);
     
     var theIsland = new Island();
 
