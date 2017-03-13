@@ -153,8 +153,7 @@ function Camera(glCanvas) {
 		}
 	}
 
-
-	this.getProjViewMatrix = function() {
+	this.getProjViewMatrix = function(focalLength, eye) {
 		var scissorBox = gl.getParameter(gl.SCISSOR_BOX);
 		// height is box param 3, width is box param 2
 		var hwRatio = scissorBox[3] / scissorBox[2];
@@ -179,7 +178,11 @@ function Camera(glCanvas) {
 
 		// Set position
 		orientation = mult(orientation, translate(-position[0], -position[1], position[2]));
-
+		// Set a slight eye translation in the event this goes to the headset
+		if (mode == "headset") {
+			var offset = (eye == 0) ? (focalLength / 2) : (-focalLength / 2);
+			orientation = mult(translate(offset, 0, 0), orientation);
+		}
 		return mult(proj, orientation);
 	};
 
