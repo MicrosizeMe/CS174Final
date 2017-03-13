@@ -162,19 +162,24 @@ window.onload = function() {
 		throw e;
 	}
 
+	// Create player in world
 	player = new Player(canvas, vec3(quarterSize, 0, -quarterSize), moveUnit); // pos parameter = player's initial position.
     
+    // material for water is a color
     var waterMaterial = new Material(
         vec4(0.117, 0.5647, 1, 1),
         vec4(0.117, 0.5647, 1, 1)
     );
     
+    // Create giant water cube
 	var water = new Cube(waterMaterial, null, true, false);
 	water.position = vec3(islandSize * 0.66, 0.0, islandSize * 0.66);
 	water.scale = vec3(islandSize*10, 0.1, islandSize*10);
     
+    // Create island
     var theIsland = new Island();
 
+    // Light source! In the sky!
     sun = new Sun(300);
 	shapes = [water, theIsland];
     
@@ -195,6 +200,7 @@ window.onload = function() {
     
 	draw();
     
+    // Refresh orientation data based on yaw/pitch/roll data on server taken from phone
 	var refreshOrientation = function() {
 		player.camera.setYaw();
 		player.camera.setPitch();
@@ -205,7 +211,7 @@ window.onload = function() {
 	refreshOrientation();
 
     setTimeout(function() {
-		// Attach our keyboard listener to the canvas
+		// Attach our keyboard listener to the canvas; needed for WASD control
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
         var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
         var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
@@ -234,6 +240,7 @@ function draw() {
 	    resetStuff();
     }
 
+    // enable depth buffer and clear
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.enable(gl.DEPTH_TEST);
 
@@ -244,11 +251,11 @@ function draw() {
 	glHelper.setProjViewMatrix(player.camera.getProjViewMatrix());
 
 	var identMat = mat4();
-	var dt = timer.getElapsedTime();
+	var dt = timer.getElapsedTime(); // time
 
 	sun.draw(dt);  // This will set our light position and material
 
-	dt += timer.getElapsedTime();
+	dt += timer.getElapsedTime(); // update time
 	Tree.drawTrees(dt);
 	
 
