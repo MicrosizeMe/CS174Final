@@ -165,7 +165,6 @@ function handleResize() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	gl.viewport(0, 0, canvas.width, canvas.height);
-	gl.scissor(0, 0, canvas.width / 2, canvas.height);
 }
 
 
@@ -249,6 +248,11 @@ window.onload = function() {
         }
     }
     
+    gl.enable(gl.SCISSOR_TEST);
+	gl.enable(gl.DEPTH_TEST);
+	glHelper.uniformLighting(true);
+	glHelper.enableLighting(true);
+	glHelper.enableBumping(false);
 	draw();
     
     setTimeout(function() {
@@ -274,45 +278,44 @@ function resetStuff() {
 
 // Draws the data in the vertex buffer on the canvas repeatedly
 function draw() {
+	for (var i = 0; i < 2; i++) {
+		gl.scissor((canvas.width/2)*i, 0, canvas.width / 2, canvas.height);
+		gl.viewport((canvas.width/2)*i, 0, canvas.width / 2, canvas.height);
 
-    resetCount++;
-    if(resetCount > 1000) {
-	    resetCount = 0;
-	    resetStuff();
-    }
+	    resetCount++;
+	    if(resetCount > 1000) {
+		    resetCount = 0;
+		    resetStuff();
+	    }
 
-	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-	gl.enable(gl.DEPTH_TEST);
-	gl.enable(gl.SCISSOR_TEST);
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-	glHelper.uniformLighting(true);
-	glHelper.enableLighting(true);
-	glHelper.enableBumping(false);
-	player.move(); // This will set our camera in the world
-	glHelper.setProjViewMatrix(player.camera.getProjViewMatrix());
+		player.move(); // This will set our camera in the world
+		glHelper.setProjViewMatrix(player.camera.getProjViewMatrix());
 
-	var identMat = mat4();
-	var dt = timer.getElapsedTime();
+		var identMat = mat4();
+		var dt = timer.getElapsedTime();
 
-	sun.draw(dt);  // This will set our light position and material
+		sun.draw(dt);  // This will set our light position and material
 
-	dt += timer.getElapsedTime();
-	Tree.drawTrees(dt);
-	
-
-	shapes.forEach(function(e) {
 		dt += timer.getElapsedTime();
-		e.draw(dt, identMat);
-	});
-    
-	player.draw(); // Draw player on the phone screen
-	glHelper.setLightMaterial(sun.lightMaterial);
+		Tree.drawTrees(dt);
+		
 
-	player.draw();
-    if(cutscene) {
-        if(player.camera.getRoll()!=0) {
-            player.camera.rollBy(1);
-        }
-    }
+		shapes.forEach(function(e) {
+			dt += timer.getElapsedTime();
+			e.draw(dt, identMat);
+		});
+	    
+		player.draw(); // Draw player on the phone screen
+		glHelper.setLightMaterial(sun.lightMaterial);
+
+		player.draw();
+	    if(cutscene) {
+	        if(player.camera.getRoll()!=0) {
+	            player.camera.rollBy(1);
+	        }
+	    }
+	}
 	window.requestAnimFrame(draw);
 }
