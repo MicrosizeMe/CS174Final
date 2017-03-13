@@ -43,6 +43,8 @@ var mouseSensitivity = 0.1;
 
 var mode = "headset";
 
+var focalLength = 1;
+
 // Set the shader attributes
 var glHelper = (function() {
 	var helper = {};
@@ -278,6 +280,7 @@ function resetStuff() {
 
 // Draws the data in the vertex buffer on the canvas repeatedly
 function draw() {
+	// 0 for left eye, 1 for right eye
 	for (var i = 0; i < 2; i++) {
 		gl.scissor((canvas.width/2)*i, 0, canvas.width / 2, canvas.height);
 		gl.viewport((canvas.width/2)*i, 0, canvas.width / 2, canvas.height);
@@ -291,7 +294,7 @@ function draw() {
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		player.move(); // This will set our camera in the world
-		glHelper.setProjViewMatrix(player.camera.getProjViewMatrix());
+		glHelper.setProjViewMatrix(player.camera.getProjViewMatrix(focalLength, i));
 
 		var identMat = mat4();
 		var dt = timer.getElapsedTime();
