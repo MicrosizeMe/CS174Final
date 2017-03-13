@@ -153,6 +153,7 @@ function Camera(glCanvas) {
 		}
 	}
 
+
 	this.getProjViewMatrix = function() {
 		var scissorBox = gl.getParameter(gl.SCISSOR_BOX);
 		// height is box param 3, width is box param 2
