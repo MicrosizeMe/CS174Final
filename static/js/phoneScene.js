@@ -224,6 +224,20 @@ window.onload = function() {
         }
     }
     
+    // Meme Cube Placement
+    for (var x=1; x<islandSize; x+=12)
+    {
+        for(var z=1; z<islandSize; z+=12)
+        {
+            var kY = 4.0 * (0.5 * 0.3 +1.0);
+            if (x >= 11 && x <= 49 && z >= 7 && z <= 35) {
+                new memeCube(
+                             vec3(x, heights[x][z] - 0.5, z),
+                             kY);
+            }
+        }
+    }
+    
     // Scissoring to split screen, enable depth buffer
     gl.enable(gl.SCISSOR_TEST);
 	gl.enable(gl.DEPTH_TEST);
