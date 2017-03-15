@@ -133,7 +133,7 @@ Tree.prototype.playAudio = function() {
 	trees = Tree.getTrees();
 	for (var i = 0; i < trees.length; i++)
 		if (trees[i].audio != undefined && isAudioPlaying(trees[i].audio)) {
-			break;
+			return;
 		}
 	if (this.audio != undefined && !isAudioPlaying(this.audio))
 		this.audio.play();
