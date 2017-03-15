@@ -222,7 +222,7 @@ window.onload = function() {
                 new Tree(
                          vec3(x, heights[x][z] - 0.5, z),
                          kXZ, kY, cntCube);
-                cntCube += 1;
+                //cntCube += 1;
             }
         }
     }
