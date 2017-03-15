@@ -31,6 +31,7 @@ var program;
 var camera;
 var player;
 var resetCount = 0;
+var cntCube = 0;
 
 var timer = new Timer();
 
@@ -182,8 +183,6 @@ window.onload = function() {
     // Light source! In the sky!
     sun = new Sun(300);
 	shapes = [water, theIsland];
-    
-    var cntCube = 0;
     
     // Specified Tree Placement
     for (var x=1; x<islandSize; x+=12)
