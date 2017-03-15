@@ -199,9 +199,9 @@ window.onload = function() {
     }
     
     // Meme Cube Placement
-    for (var x=1; x<islandSize; x+=12)
+    for (var x=1; x<islandSize; x+=4)
     {
-        for(var z=1; z<islandSize; z+=12)
+        for(var z=1; z<islandSize; z+=4)
         {
             var kY = 4.0 * (0.5 * 0.3 +1.0);
             if (x >= 11 && x <= 49 && z >= 7 && z <= 35) {
@@ -233,7 +233,7 @@ window.onload = function() {
         window.addEventListener('keydown', playerHandleKeyDown);
         window.addEventListener('keyup', playerHandleKeyUp);
     	window.addEventListener('mousedown', playerHandleMouseDown);
-		window.addEventListener('mouseup', playerHandleMouseUp);
+		//window.addEventListener('mouseup', playerHandleMouseUp);
     }, 3000);
 
     resetStuff();
