@@ -35,6 +35,12 @@ var Tree = (function() {
                 case 5:
                     memeTex = new Texture.fromImageSrc('/img/nachenberg.jpg');
                     break;
+                case 6:
+                    memeTex = new Texture.fromImageSrc('/img/sherstov.jpg');
+                    break;
+                case 7:
+                    memeTex = new Texture.fromImageSrc('/img/millstein.jpg');
+                    break;
             }
             
             cntCube += 1;
