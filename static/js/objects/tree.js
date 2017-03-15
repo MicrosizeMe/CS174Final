@@ -24,8 +24,8 @@ var Tree = (function() {
                                                vec4(0.3, 0.3, 0.3, 1.0)
                                                );
             var memeMaterial = new Material(
-                                            vec4(0.0, 1.0, 0.5, 1.0),
-                                            vec4(0.0, 1.0, 0.5, 1.0)
+                                            vec4(1.0, 1.0, 1.0, 1.0),
+                                            vec4(1.0, 1.0, 1.0, 1.0)
                                             );
             
             this.position = position;
@@ -91,7 +91,7 @@ Tree.prototype.draw = function(dt, mat) {
     this.foliageRound.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
     
     this.memeSquare.position  = add(pos, vec3(1.0 * kX, 0.0, 0.0));
-    this.memeSquare.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
+    this.memeSquare.scale		= vec3(1 * kX, 1 * kY, 1 * kZ);
     
     this.trunk.draw(dt, mat);
     this.foliageRound.draw(dt, mat);
