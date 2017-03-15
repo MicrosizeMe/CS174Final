@@ -123,12 +123,19 @@ Tree.prototype.checkCollisionMemeSquare = function(pos, otherRadius) {
     return distSq <= radiusSq;
 }
 
-function isAudioIsPlaying(audio) {
+function isAudioPlaying(audio) {
 	return (audio.currentTime > 0 && !audio.paused && !audio.ended);
 }
 
+// Play this tree's audio if and only if no other cubes are playing audio (including)
+// this one
 Tree.prototype.playAudio = function() {
-	if (this.audio != undefined && !isAudioIsPlaying(this.audio))
+	trees = Tree.getTrees();
+	for (var i = 0; i < trees.length; i++)
+		if (trees[i].audio != undefined && isAudioPlaying(trees[i].audio)) {
+			break;
+		}
+	if (this.audio != undefined && !isAudioPlaying(this.audio))
 		this.audio.play();
 }
 
