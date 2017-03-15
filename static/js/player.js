@@ -71,7 +71,7 @@ function Player(glCanvas, pos, speed) {
 				break;
 			}
 			if (trees[i].checkCollisionMemeSquare(newPos, this.movementSpeed)) {
-				var d = dot(subtract(trees[i].memesquare.position, startPosition), heading);
+				var d = dot(subtract(trees[i].memeSquare.position, startPosition), heading);
 				if(d > 0) {
 					continue;
 				}
