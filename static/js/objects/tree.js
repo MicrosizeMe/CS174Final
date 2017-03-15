@@ -7,7 +7,7 @@ var Tree = (function() {
             
             var foliageTex = null;
             var memeTex = null;
-            function constructor(position, radius, height)
+            function constructor(position, radius, height, cntCube)
             {
             
             // Apply the foliage image texture
@@ -15,8 +15,25 @@ var Tree = (function() {
             foliageTex = new Texture.fromImageSrc('/img/foliage.png');
             }
             
-            if (!memeTex) {
-            memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
+            switch (cntCube) {
+                case 0:
+                    memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
+                    break;
+                case 1:
+                    memeTex = new Texture.fromImageSrc('/img/eggert.jpg');
+                    break;
+                case 2:
+                    memeTex = new Texture.fromImageSrc('/img/potkonjak.jpg');
+                    break;
+                case 3:
+                    memeTex = new Texture.fromImageSrc('/img/reinman.jpg');
+                    break;
+                case 4:
+                    memeTex = new Texture.fromImageSrc('/img/smallberg.jpg');
+                    break;
+                case 5:
+                    memeTex = new Texture.fromImageSrc('/img/nachenberg.jpg');
+                    break;
             }
             
             var foliageMaterial = new Material(
@@ -90,7 +107,7 @@ Tree.prototype.draw = function(dt, mat) {
     this.foliageRound.position  = add(pos, vec3(0.0, 1.0 * kY, 0.0));
     this.foliageRound.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
     
-    this.memeSquare.position  = add(pos, vec3(0.2 * kX, 1.0, 0.0));
+    this.memeSquare.position  = add(pos, vec3(0.3 * kX, 1.0, 0.0));
     this.memeSquare.scale		= vec3(0.1 * kX, 0.1 * kY, 0.1 * kZ);
     
     this.trunk.draw(dt, mat);
