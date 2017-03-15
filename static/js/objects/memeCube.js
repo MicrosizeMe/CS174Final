@@ -19,7 +19,7 @@ var memeCube = (function() {
             
             // The tree trunks are hexagonal prisms, while the tree leaves are spherical.
             //this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
-            this.memeSquare = new Cube(memeMaterial, memeTex, true, false, null);
+            this.memeSquare = new Cube(memeMaterial, null, true, false, null);
             //this.foliageRound.radius = 2;
             
             memes.push(this);
