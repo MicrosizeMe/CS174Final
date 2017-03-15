@@ -19,6 +19,7 @@ var Tree = (function() {
             switch (cntCube) {
                 case 0:
                     memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
+                    this.audio = new Audio("/sounds/Freidman1.mp3");
                     break;
                 case 1:
                     memeTex = new Texture.fromImageSrc('/img/eggert.jpg');
@@ -37,14 +38,17 @@ var Tree = (function() {
                     this.audio = new Audio("/sounds/Smallberg.mp3");
                     break;
                 case 5:
-                    memeTex = new Texture.fromImageSrc('/img/nachenberg.jpg');
+                    memeTex = new Texture.fromImageSrc('/img/sahai.jpg');
+                    this.audio = new Audio("/sounds/Sahai.mp3");
                     break;
                 case 6:
-                    memeTex = new Texture.fromImageSrc('/img/potkonjak.jpg');
-                     // I don’t like screaming it is too loud 
+                    memeTex = new Texture.fromImageSrc('/img/sarrafzadeh.jpg');
+                    // I don’t like screaming it is too loud 
+                    this.audio = new Audio("/sounds/Sarrafzadeh.mp3");
                     break;
                 case 7:
                     memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
+                    this.audio = new Audio("/sounds/Freidman2.mp3");
                     break;
             }
             
