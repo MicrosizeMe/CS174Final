@@ -242,6 +242,7 @@ window.onload = function() {
 function resetStuff() {
 	// Quick and dirty way to generate more sticks in the scene
 	var trees = Tree.getTrees();
+    var memes = memeCube.getMemes();
 }
 
 
