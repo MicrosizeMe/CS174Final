@@ -6,8 +6,9 @@ var Tree = (function() {
                                              );
             
             var foliageTex = null;
+            var cntCube = 0;
             var memeTex = null;
-            function constructor(position, radius, height, cntCube)
+            function constructor(position, radius, height)
             {
             
             // Apply the foliage image texture
@@ -35,6 +36,8 @@ var Tree = (function() {
                     memeTex = new Texture.fromImageSrc('/img/nachenberg.jpg');
                     break;
             }
+            
+            cntCube += 1;
             
             var foliageMaterial = new Material(
                                                vec4(0.8, 1.0, 1.0, 1.0),

@@ -31,7 +31,6 @@ var program;
 var camera;
 var player;
 var resetCount = 0;
-var cntCube = 0;
 
 var timer = new Timer();
 
@@ -194,8 +193,7 @@ window.onload = function() {
             if (x >= 11 && x <= 49 && z >= 7 && z <= 35) {
                 new Tree(
                          vec3(x, heights[x][z] - 0.5, z),
-                         kXZ, kY, cntCube);
-                cntCube += 1;
+                         kXZ, kY);
             }
         }
     }
