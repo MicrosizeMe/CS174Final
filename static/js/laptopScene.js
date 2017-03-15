@@ -197,7 +197,7 @@ window.onload = function() {
             }
         }
     }
-    
+    /*
     // Meme Cube Placement
     for (var x=1; x<islandSize; x+=4)
     {
@@ -211,6 +211,7 @@ window.onload = function() {
             }
         }
     }
+    */
     
 	draw();
     

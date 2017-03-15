@@ -223,7 +223,7 @@ window.onload = function() {
             }
         }
     }
-    
+    /*
     // Meme Cube Placement
     for (var x=1; x<islandSize; x+=4)
     {
@@ -237,7 +237,7 @@ window.onload = function() {
             }
         }
     }
-    
+    */
     // Scissoring to split screen, enable depth buffer
     gl.enable(gl.SCISSOR_TEST);
 	gl.enable(gl.DEPTH_TEST);

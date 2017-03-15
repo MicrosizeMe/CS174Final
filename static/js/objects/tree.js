@@ -6,6 +6,7 @@ var Tree = (function() {
                                              );
             
             var foliageTex = null;
+            var memeTex = null;
             function constructor(position, radius, height)
             {
             
@@ -14,10 +15,19 @@ var Tree = (function() {
             foliageTex = new Texture.fromImageSrc('/img/foliage.png');
             }
             
+            if (!memeTex) {
+            memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
+            }
+            
             var foliageMaterial = new Material(
                                                vec4(0.8, 1.0, 1.0, 1.0),
                                                vec4(0.3, 0.3, 0.3, 1.0)
                                                );
+            var memeMaterial = new Material(
+                                            vec4(0.8, 1.0, 1.0, 1.0),
+                                            vec4(0.3, 0.3, 0.3, 1.0)
+                                            );
+            
             this.position = position;
             this.radius   = radius;
             this.height   = height;
@@ -26,6 +36,7 @@ var Tree = (function() {
             // The tree trunks are hexagonal prisms, while the tree leaves are spherical.
             this.trunk         = new HexagonalPrism(trunkMaterial, null, null);
             this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
+            this.memeSquare = new Cube(memeMaterial, memeTex, true, false, null);
             this.foliageRound.radius = 2;
             
             trees.push(this);
@@ -78,6 +89,9 @@ Tree.prototype.draw = function(dt, mat) {
 
     this.foliageRound.position  = add(pos, vec3(0.0, 1.0 * kY, 0.0));
     this.foliageRound.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
+    
+    this.memeSquare.position  = add(pos, vec3(10.0, 0.0, 0.0));
+    this.memeSquare.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
     
     this.trunk.draw(dt, mat);
     this.foliageRound.draw(dt, mat);
