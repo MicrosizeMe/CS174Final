@@ -36,10 +36,10 @@ var Tree = (function() {
                     memeTex = new Texture.fromImageSrc('/img/nachenberg.jpg');
                     break;
                 case 6:
-                    memeTex = new Texture.fromImageSrc('/img/sherstov.jpg');
+                    memeTex = new Texture.fromImageSrc('/img/potkonjak.jpg');
                     break;
                 case 7:
-                    memeTex = new Texture.fromImageSrc('/img/millstein.jpg');
+                    memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
                     break;
             }
             
