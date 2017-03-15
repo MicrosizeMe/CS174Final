@@ -229,7 +229,7 @@ window.onload = function() {
         var playerHandleKeyDown = function(e){ return player.handleKeyDown(e); }
         var playerHandleKeyUp = function(e){ return player.handleKeyUp(e); }
         var playerHandleMouseDown = function(){ return player.handleMouseDown(); }
-		var playerHandleMouseUp = function(){ return player.handleMouseUp(); }
+		//var playerHandleMouseUp = function(){ return player.handleMouseUp(); }
         window.addEventListener('keydown', playerHandleKeyDown);
         window.addEventListener('keyup', playerHandleKeyUp);
     	window.addEventListener('mousedown', playerHandleMouseDown);
