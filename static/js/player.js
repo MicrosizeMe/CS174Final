@@ -70,6 +70,13 @@ function Player(glCanvas, pos, speed) {
 				xV = 0;
 				break;
 			}
+			if (trees[i].checkCollisionMemeSquare(newPos, this.movementSpeed)) {
+				var d = dot(subtract(trees[i].memesquare.position, startPosition), heading);
+				if(d > 0) {
+					continue;
+				}
+				trees[i].playAudio();
+			}
 		}
         
 		// Adjust velocities based on player's state

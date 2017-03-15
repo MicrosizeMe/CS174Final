@@ -22,21 +22,26 @@ var Tree = (function() {
                     break;
                 case 1:
                     memeTex = new Texture.fromImageSrc('/img/eggert.jpg');
+                    this.audio = new Audio("/sounds/Eggert.mp3");
                     break;
                 case 2:
                     memeTex = new Texture.fromImageSrc('/img/potkonjak.jpg');
+                    this.audio = new Audio("/sounds/Potkonjak1.mp3");
                     break;
                 case 3:
                     memeTex = new Texture.fromImageSrc('/img/reinman.jpg');
+                    this.audio = new Audio("/sounds/Reinman.mp3");
                     break;
                 case 4:
                     memeTex = new Texture.fromImageSrc('/img/smallberg.jpg');
+                    this.audio = new Audio("/sounds/Smallberg.mp3");
                     break;
                 case 5:
                     memeTex = new Texture.fromImageSrc('/img/nachenberg.jpg');
                     break;
                 case 6:
                     memeTex = new Texture.fromImageSrc('/img/potkonjak.jpg');
+                     // I don’t like screaming it is too loud 
                     break;
                 case 7:
                     memeTex = new Texture.fromImageSrc('/img/friedman.jpg');
@@ -64,6 +69,8 @@ var Tree = (function() {
             this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
             this.memeSquare = new Cube(memeMaterial, memeTex, true, false, null);
             this.foliageRound.radius = 2;
+            this.isPlaying = false;
+
             
             trees.push(this);
             }
@@ -101,6 +108,28 @@ Tree.prototype.checkCollision = function(pos, otherRadius) {
     radiusSq *= radiusSq;
     
     return distSq <= radiusSq;
+}
+
+Tree.prototype.checkCollisionMemeSquare = function(pos, otherRadius) {
+	var treeRadius = 0.17 * this.radius;
+    
+    var dist = subtract(pos, this.memeSquare.position);
+    
+    // Ignore y-component, and approximate using a cylinder shape
+    var distSq = (dist[0] * dist[0]) + (dist[2] * dist[2]);
+    var radiusSq = otherRadius + treeRadius;
+    radiusSq *= radiusSq;
+    
+    return distSq <= radiusSq;
+}
+
+function isAudioIsPlaying(audio) {
+	return (audio.currentTime > 0 && !audio.paused && !audio.ended);
+}
+
+Tree.prototype.playAudio() {
+	if (this.audio != undefined && !isAudioIsPlaying(this.audio))
+		this.audio.play();
 }
 
 Tree.prototype.draw = function(dt, mat) {
