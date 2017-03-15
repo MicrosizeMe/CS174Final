@@ -90,7 +90,7 @@ Tree.prototype.draw = function(dt, mat) {
     this.foliageRound.position  = add(pos, vec3(0.0, 1.0 * kY, 0.0));
     this.foliageRound.scale		= vec3(8.7 * kX, 8.5 * kY, 8.7 * kZ);
     
-    this.memeSquare.position  = add(pos, vec3(0.5 * kX, 1.0, 0.0));
+    this.memeSquare.position  = add(pos, vec3(0.4 * kX, 1.0, 0.0));
     this.memeSquare.scale		= vec3(0.1 * kX, 0.1 * kY, 0.1 * kZ);
     
     this.trunk.draw(dt, mat);
