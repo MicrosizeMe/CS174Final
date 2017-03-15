@@ -127,7 +127,7 @@ function isAudioIsPlaying(audio) {
 	return (audio.currentTime > 0 && !audio.paused && !audio.ended);
 }
 
-Tree.prototype.playAudio() {
+Tree.prototype.playAudio = function() {
 	if (this.audio != undefined && !isAudioIsPlaying(this.audio))
 		this.audio.play();
 }
