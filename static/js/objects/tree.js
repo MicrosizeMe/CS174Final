@@ -38,6 +38,7 @@ var Tree = (function() {
             this.foliageRound  = new Sphere(foliageMaterial, foliageTex, false, null);
             this.memeSquare = new Sphere(memeMaterial, memeTex, false, null);
             this.foliageRound.radius = 2;
+            this.memeSquare.radius = 2;
             
             trees.push(this);
             }
@@ -95,4 +96,5 @@ Tree.prototype.draw = function(dt, mat) {
     
     this.trunk.draw(dt, mat);
     this.foliageRound.draw(dt, mat);
+    this.memeSquare.draw(dt, mat);
 }
